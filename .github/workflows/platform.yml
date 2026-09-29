@@ -1,0 +1,16 @@
+name: Platform
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  drift:
+    uses: Kairzen/undrwrldcub-platform/.github/workflows/drift-check.yml@main
+
+  lock:
+    uses: Kairzen/undrwrldcub-platform/.github/workflows/lock-sync.yml@main
+    permissions:
+      contents: write
