@@ -1,0 +1,7 @@
+[
+  {"date": "2026-10-16", "day": "16", "mon": "Oct", "title": "Radiance Pre-Rift", "kind": "prerift", "time": "Fri 6:00–10:00 PM", "format": "Sealed · 24 seats · Pre-Rift kit + 5 Radiance boosters", "note": "Sign-up strongly suggested. 24 seats: this will sell out. Register on PlayRiftbound.com or at the store."},
+  {"date": "2026-10-23", "day": "23", "mon": "Oct", "title": "Radiance releases · Nexus Night", "kind": "casual", "time": "Fri 6:00–10:00 PM", "format": "Release-week Nexus Night", "note": "Boosters, Showdown Decks, and the Vault hit shelves that morning. Bring the new cards."},
+  {"date": "2026-11-09", "day": "Nov", "mon": "Win. I", "title": "Radiance Summoner Skirmish I", "kind": "competitive", "time": "Window Nov 9 – Dec 13 · store date TBA", "format": "1v1 Constructed, Bo3, Swiss + top cut", "note": "Participation promo (32), Top Cut promo (8), Champion promo and playmat. No Regional bye this set."},
+  {"date": "2026-12-14", "day": "Dec", "mon": "Win. II", "title": "Radiance Summoner Skirmish II", "kind": "competitive", "time": "Window Dec 14 – Jan 17 · store date TBA", "format": "1v1 Constructed, Bo3, Swiss + top cut", "note": "The last Summoner Skirmish before the format retires."},
+  {"date": "weekly", "day": "FRI", "mon": "Every", "title": "Nexus Night", "kind": "casual", "time": "6:00–10:00 PM", "format": "Constructed most weeks; Sealed or Champion Deck nights when the mood strikes", "note": "Nexus Night promo pack for playing, while supplies last. Loaner decks available."}
+]

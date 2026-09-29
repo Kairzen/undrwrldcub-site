@@ -1,0 +1,126 @@
+---
+import Base from '../layouts/Base.astro';
+
+const realms = [
+  { title: 'WoW: Forever', kind: 'Wiki', glyph: 'W', accent: '#D4A64A', tint: 'rgba(212,166,74,.12)', href: 'https://forever.undrwrldcub.com', cta: 'Open the wiki',
+    desc: 'A fan-made field guide to World of Warcraft: Forever. Classes, zones, dungeons, professions, talents, and an interactive flight chart.' },
+  { title: 'Pathfinder 2e', kind: 'The table', glyph: 'P', accent: '#E06A58', tint: 'rgba(224,106,88,.12)', href: '/pathfinder/', cta: 'Meet the table',
+    desc: 'We run the Cat City Campaign on Pathfinder Second Edition Remaster, with Hero Lab Online at the center of prep and play.' },
+  { title: 'Riftbound', kind: 'Collection', glyph: 'R', accent: '#6FB2E8', tint: 'rgba(111,178,232,.12)', href: '/riftbound/', cta: 'Join Nexus Night',
+    desc: 'The League of Legends trading card game. We collect it, play it, and run Nexus Night every Friday, 6\u201310 PM, at Big Deck Energy Games in Cathedral City.' },
+  { title: 'Disney Lorcana', kind: 'Collection', glyph: 'L', accent: '#C58BE0', tint: 'rgba(197,139,224,.12)', href: '/lorcana/', cta: 'Peek inside',
+    desc: 'Ink, glimmers, and lore. A newer shelf in the lair, still being catalogued.' },
+  { title: '3D Printing', kind: 'The workshop', glyph: 'M', accent: '#5CCB86', tint: 'rgba(92,203,134,.12)', href: '/workshop/', cta: 'Enter the workshop',
+    desc: 'A sorted library of Modi Case, Boxi, and Loop prints: modular storage for every deck, die, and token we own.' },
+  { title: 'Theme Parks', kind: 'Field notes', glyph: 'T', accent: '#E4B45A', tint: 'rgba(228,180,90,.12)', href: '/parks/', cta: 'Plan a day',
+    desc: 'Disneyland Resort, Six Flags Magic Mountain, and Knott\u2019s Berry Farm. Crowd calendars, line strategy, and a shared events calendar.' }
+];
+const socials = [
+  { label: 'Collectr', handle: '@undrwrldcub', href: 'https://app.getcollectr.com/showcase/profile/undrwrldcub' },
+  { label: 'GitHub', handle: 'Kairzen', href: 'https://github.com/Kairzen' },
+  { label: 'Email', handle: 'undrwrldcub@gmail.com', href: 'mailto:undrwrldcub@gmail.com' }
+];
+---
+<Base title="UndrwrldCub">
+<header style="position:sticky;top:0;z-index:50;background:rgba(14,12,18,.92);backdrop-filter:blur(10px);border-bottom:1px solid #2D2838">
+  <div style="max-width:1160px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;gap:18px">
+    <a href="#top" style="display:flex;align-items:center;gap:10px;color:#F6F1FA;font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:19px;white-space:nowrap">
+      <img src="/brand/octopus-192.png" alt="" style="width:40px;height:40px;object-fit:contain">
+      <span>UndrwrldCub</span>
+    </a>
+    <nav style="margin-left:auto;display:flex;gap:2px;flex-wrap:wrap;justify-content:flex-end">
+      <a href="#realms" style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:16px;color:#A69DB4;padding:8px 10px;border-radius:8px"class="nav-link">Realms</a>
+      <a href="#about" style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:16px;color:#A69DB4;padding:8px 10px;border-radius:8px"class="nav-link">About</a>
+      <a href="#find" style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:16px;color:#A69DB4;padding:8px 10px;border-radius:8px"class="nav-link">Find us</a>
+    </nav>
+  </div>
+</header>
+
+<section id="top" style="position:relative;overflow:hidden;border-bottom:1px solid #2D2838;padding:48px 0 56px;isolation:isolate">
+  <div style="position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 18% 30%,rgba(155,107,224,.30),transparent 70%),radial-gradient(45% 60% at 92% 12%,rgba(212,166,74,.14),transparent 70%),radial-gradient(80% 60% at 50% 110%,rgba(155,107,224,.12),transparent 70%),linear-gradient(180deg,#120f19 0%,#0E0C12 100%)"></div>
+  <div style="position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(233,228,238,.55) 1px,transparent 1.4px);background-size:46px 46px;opacity:.07"></div>
+  <div style="max-width:1160px;margin:0 auto;padding:0 20px;display:flex;flex-wrap:wrap;align-items:center;gap:28px 40px">
+    <div style="flex:1 1 280px;max-width:460px;position:relative;margin:0 auto">
+      <div style="position:absolute;inset:8% 14%;border-radius:50%;background:radial-gradient(closest-side,rgba(155,107,224,.55),rgba(155,107,224,0));filter:blur(12px);z-index:-1"></div>
+      <img src="/brand/octopus-full.png" alt="UndrwrldCub octopus emblem" style="display:block;width:100%;height:auto;filter:drop-shadow(0 10px 30px rgba(0,0,0,.6));animation:drift 7s ease-in-out infinite">
+    </div>
+    <div style="flex:1 1 340px;min-width:0">
+      <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#D4A64A">Palm Springs area · California · we/us</div>
+      <h1 style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(40px,6vw,72px);line-height:1.02;margin:10px 0 16px;letter-spacing:.01em;background:linear-gradient(180deg,#FBF6FF 30%,#D9C6F4 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 24px rgba(155,107,224,.25)">UndrwrldCub</h1>
+      <p style="font-size:19px;color:#E9E4EE;opacity:.9;max-width:52ch;margin:0 0 24px;text-wrap:pretty">Dungeon master, card collector, wiki keeper, and maker of many small plastic boxes. This is the lair. Every tentacle points somewhere.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <a href="#realms" style="display:inline-flex;align-items:center;justify-content:center;height:46px;padding:0 20px;border-radius:10px;font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:17px;background:#D4A64A;color:#1A1408;box-shadow:0 6px 20px -8px rgba(212,166,74,.7)"class="btn-gold">Enter the realms</a>
+        <a href="https://forever.undrwrldcub.com" style="display:inline-flex;align-items:center;justify-content:center;height:46px;padding:0 20px;border-radius:10px;font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:17px;border:1px solid #6B5628;color:#E9E4EE;background:rgba(24,21,31,.6)"class="btn-outline">WoW: Forever wiki</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="realms" style="max-width:1160px;margin:0 auto;padding:52px 20px 0">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px">
+    <h2 style="font-family:'Cinzel',Georgia,serif;font-size:clamp(22px,2.4vw,28px);font-weight:700;margin:0;color:#F6F1FA;letter-spacing:.01em">The Realms</h2>
+    <span style="font-family:'Barlow Semi Condensed',sans-serif;font-size:15px;color:#A69DB4">Six doors. Pick one.</span>
+  </div>
+  <div style="width:44px;height:2px;margin-bottom:18px;background:linear-gradient(90deg,#D4A64A,transparent)"></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+    {realms.map((r) => (
+      <a href={r.href} class="realm" style={`--accent:${r.accent};position:relative;display:flex;flex-direction:column;gap:10px;padding:22px 20px 18px;border-radius:12px;border:1px solid #2D2838;color:#E9E4EE;overflow:hidden;background:linear-gradient(160deg,${r.tint} 0%,#18151F 55%);transition:transform .15s ease,border-color .15s ease`}>
+        <div style={`position:absolute;left:0;right:0;top:0;height:3px;background:${r.accent};opacity:.85`}></div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style={`width:46px;height:46px;border-radius:12px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:20px;color:${r.accent};background:${r.tint};border:1px solid ${r.accent}`}>{r.glyph}</div>
+          <h3 style="margin:0;font-size:21px;font-weight:700;color:#F6F1FA;line-height:1.2">{r.title}</h3>
+        </div>
+        <p style="margin:0;color:#A69DB4;font-size:15px;line-height:1.5;text-wrap:pretty">{r.desc}</p>
+        <div style="margin-top:auto;padding-top:12px;border-top:1px solid #2D2838;display:flex;justify-content:space-between;align-items:center;font-family:'Barlow Semi Condensed',sans-serif;font-size:14px;font-weight:600">
+          <span style={`color:${r.accent};letter-spacing:.06em;text-transform:uppercase`}>{r.kind}</span>
+          <span style="color:#A69DB4">{r.cta} →</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<section id="about" style="max-width:1160px;margin:0 auto;padding:56px 20px 0">
+  <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;padding:30px 34px;border:1px solid #6B5628;border-radius:16px;background:linear-gradient(135deg,rgba(32,28,41,.92),rgba(20,17,27,.92));box-shadow:0 30px 60px -30px rgba(0,0,0,.9),inset 0 1px 0 rgba(230,189,102,.12)">
+    <div style="position:absolute;left:24px;right:24px;top:-1px;height:2px;background:linear-gradient(90deg,transparent,#D4A64A,#9B6BE0,transparent);border-radius:2px"></div>
+    <div>
+      <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#D4A64A">Who keeps this lair</div>
+      <h2 style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(28px,3.6vw,42px);line-height:1.05;color:#F6F1FA;margin:10px 0 12px">Many arms, one octopus.</h2>
+      <p style="font-size:17px;color:#A69DB4;margin:0;text-wrap:pretty">We are nonbinary and go by we/us. We run a Pathfinder Second Edition table, keep a fan wiki for World of Warcraft: Forever, track a growing Riftbound collection, sort 3D‑printed card storage into a library, and plan far too many theme park days from the Palm Springs area.</p>
+    </div>
+    <div style="border-left:1px solid #3A3347;padding-left:32px;font-family:'Barlow Semi Condensed',sans-serif">
+      <div style="color:#A69DB4;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600">At a glance</div>
+      <dl style="margin:10px 0 0;display:grid;grid-template-columns:auto 1fr;gap:9px 18px;font-size:16px">
+        <dt style="color:#756D84;font-weight:600">Pronouns</dt><dd style="margin:0;color:#F6F1FA">we / us</dd>
+        <dt style="color:#756D84;font-weight:600">Home</dt><dd style="margin:0;color:#F6F1FA">Palm Springs area, CA</dd>
+        <dt style="color:#756D84;font-weight:600">Table</dt><dd style="margin:0;color:#F6F1FA">Pathfinder 2e Remaster, Hero Lab Online</dd>
+        <dt style="color:#756D84;font-weight:600">Decks</dt><dd style="margin:0;color:#F6F1FA">Riftbound, Disney Lorcana</dd>
+        <dt style="color:#756D84;font-weight:600">Nexus Night</dt><dd style="margin:0;color:#F6F1FA">Fridays 6–10 PM, Big Deck Energy Games</dd>
+        <dt style="color:#756D84;font-weight:600">Next up</dt><dd style="margin:0;color:#F6F1FA"><a href="/riftbound/#prerift" style="color:#E6BD66">Radiance Pre‑Rift · Oct 16</a></dd>
+        <dt style="color:#756D84;font-weight:600">Parks</dt><dd style="margin:0;color:#F6F1FA">Disneyland, Six Flags, Knott's</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="find" style="max-width:1160px;margin:0 auto;padding:56px 20px 0">
+  <h2 style="font-family:'Cinzel',Georgia,serif;font-size:clamp(22px,2.4vw,28px);font-weight:700;margin:0;color:#F6F1FA">Find us</h2>
+  <div style="width:44px;height:2px;margin:8px 0 18px;background:linear-gradient(90deg,#9B6BE0,transparent)"></div>
+  <div style="display:flex;flex-wrap:wrap;gap:10px">
+    {socials.map((s) => (
+      <a href={s.href} class="pill" style="display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:999px;background:#201C29;border:1px solid #2D2838;color:#E9E4EE;font-size:15px">
+        <span style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;color:#A69DB4;font-size:13px;letter-spacing:.06em;text-transform:uppercase">{s.label}</span>
+        <span>{s.handle}</span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<footer style="margin-top:72px;border-top:1px solid #2D2838;background:#13111A">
+  <div style="max-width:1160px;margin:0 auto;padding:28px 20px 36px;display:flex;flex-wrap:wrap;gap:18px 40px;align-items:center;font-size:14px;color:#A69DB4">
+    <img src="/brand/octopus-192.png" alt="" style="width:56px;height:56px;object-fit:contain">
+    <div style="flex:1 1 320px">© 2026 UndrwrldCub. Fan pages are unofficial; game names belong to their publishers.</div>
+    <a href="https://forever.undrwrldcub.com" style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600">forever.undrwrldcub.com</a>
+  </div>
+</footer>
+</Base>

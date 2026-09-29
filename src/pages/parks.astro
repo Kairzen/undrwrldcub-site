@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Theme Parks · UndrwrldCub">
+<header style="position:sticky;top:0;z-index:50;background:rgba(14,12,18,.92);backdrop-filter:blur(10px);border-bottom:1px solid #2D2838">
+  <div style="max-width:1160px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;gap:18px">
+    <a href="/" style="display:flex;align-items:center;gap:10px;color:#F6F1FA;font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:19px;white-space:nowrap">
+      <img src="/brand/octopus-192.png" alt="" style="width:40px;height:40px;object-fit:contain"><span>UndrwrldCub</span>
+    </a>
+    <a href="/#realms" style="margin-left:auto;font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:16px;color:#A69DB4;padding:8px 10px;border-radius:8px"class="nav-link">← All realms</a>
+  </div>
+</header>
+
+<section style="border-bottom:1px solid #2D2838;background:linear-gradient(180deg,rgba(228,180,90,.10),#0E0C12 90%)">
+  <div style="max-width:1160px;margin:0 auto;padding:36px 20px 32px;display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap">
+    <div style="width:58px;height:58px;border-radius:14px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:26px;color:#E4B45A;background:rgba(228,180,90,.16);border:1px solid rgba(228,180,90,.4)">T</div>
+    <div style="flex:1 1 320px;min-width:0">
+      <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#E4B45A">Field notes</div>
+      <h1 style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(30px,4.4vw,46px);line-height:1.2;margin:4px 0 8px;color:#F6F1FA">Theme Parks</h1>
+      <p style="font-size:18px;color:#A69DB4;max-width:72ch;margin:0;text-wrap:pretty">Southern California has too many parks and we intend to visit all of them, repeatedly, with a plan.</p>
+    </div>
+  </div>
+</section>
+
+<main style="max-width:1160px;margin:0 auto;padding:0 20px">
+  <section style="margin-top:44px">
+    <h2 style="font-family:'Cinzel',Georgia,serif;font-size:clamp(22px,2.4vw,28px);font-weight:700;margin:0;color:#F6F1FA">The circuit</h2>
+    <div style="width:44px;height:2px;margin:8px 0 18px;background:linear-gradient(90deg,#E4B45A,transparent)"></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+      <div style="background:#18151F;border:1px solid #2D2838;border-radius:12px;padding:20px">
+        <h3 style="margin:0 0 6px;font-size:20px;color:#F6F1FA">Disneyland Resort</h3>
+        <p style="margin:0;color:#A69DB4;font-size:15px">Disneyland Park and Disney California Adventure. Lightning Lane strategy, Magic Key reservation windows, celebration days, and dining reservations that book out weeks ahead.</p>
+      </div>
+      <div style="background:#18151F;border:1px solid #2D2838;border-radius:12px;padding:20px">
+        <h3 style="margin:0 0 6px;font-size:20px;color:#F6F1FA">Six Flags California</h3>
+        <p style="margin:0;color:#A69DB4;font-size:15px">Magic Mountain for the coasters. Picking a light week from historical crowd patterns, then deciding on a skip‑the‑line pass day‑of from real wait times.</p>
+      </div>
+      <div style="background:#18151F;border:1px solid #2D2838;border-radius:12px;padding:20px">
+        <h3 style="margin:0 0 6px;font-size:20px;color:#F6F1FA">Knott's Berry Farm</h3>
+        <p style="margin:0;color:#A69DB4;font-size:15px">Boysenberry everything. Seasonal events are the draw here, and they are the first things to land on the calendar each year.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:52px">
+    <h2 style="font-family:'Cinzel',Georgia,serif;font-size:clamp(22px,2.4vw,28px);font-weight:700;margin:0;color:#F6F1FA">How a park day gets planned</h2>
+    <div style="width:44px;height:2px;margin:8px 0 18px;background:linear-gradient(90deg,#E4B45A,transparent)"></div>
+    <ol style="list-style:none;margin:0;padding:0;display:grid;gap:10px">
+      <li style="display:flex;gap:16px;align-items:flex-start;background:#18151F;border:1px solid #2D2838;border-radius:12px;padding:16px 18px">
+        <span style="font-family:'IBM Plex Mono',monospace;color:#E4B45A;font-size:15px;padding-top:3px">01</span>
+        <div><strong style="color:#F6F1FA">Pick the week.</strong> <span style="color:#A69DB4">Historical crowd levels and school calendars narrow it to a few candidate days.</span></div>
+      </li>
+      <li style="display:flex;gap:16px;align-items:flex-start;background:#18151F;border:1px solid #2D2838;border-radius:12px;padding:16px 18px">
+        <span style="font-family:'IBM Plex Mono',monospace;color:#E4B45A;font-size:15px;padding-top:3px">02</span>
+        <div><strong style="color:#F6F1FA">Book what books.</strong> <span style="color:#A69DB4">Park reservations, dining, and any celebration add‑ons go on the shared Theme Park Events calendar the moment they open.</span></div>
+      </li>
+      <li style="display:flex;gap:16px;align-items:flex-start;background:#18151F;border:1px solid #2D2838;border-radius:12px;padding:16px 18px">
+        <span style="font-family:'IBM Plex Mono',monospace;color:#E4B45A;font-size:15px;padding-top:3px">03</span>
+        <div><strong style="color:#F6F1FA">Decide day‑of.</strong> <span style="color:#A69DB4">Skip‑the‑line passes are bought only when live waits justify them. Some days the standby line wins.</span></div>
+      </li>
+    </ol>
+  </section>
+
+  <section style="margin-top:52px;background:#18151F;border:1px solid #2D2838;border-left:3px solid #E4B45A;border-radius:10px;padding:14px 18px">
+    <strong style="color:#F6F1FA">Coming to this page:</strong> <span style="color:#A69DB4">upcoming park days, trip reports, and the coaster count.</span>
+  </section>
+</main>
+
+<footer style="margin-top:72px;border-top:1px solid #2D2838;background:#13111A">
+  <div style="max-width:1160px;margin:0 auto;padding:28px 20px 36px;display:flex;flex-wrap:wrap;gap:18px 40px;align-items:center;font-size:14px;color:#A69DB4">
+    <img src="/brand/octopus-192.png" alt="" style="width:56px;height:56px;object-fit:contain">
+    <div style="flex:1 1 320px">© 2026 UndrwrldCub. Park names are trademarks of their owners. Personal notes, not official guidance.</div>
+    <a href="/" style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600">undrwrldcub.com</a>
+  </div>
+</footer>
+</Base>

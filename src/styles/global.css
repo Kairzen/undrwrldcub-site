@@ -1,0 +1,12 @@
+html{background:#0E0C12;color:#E9E4EE;color-scheme:dark}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:#B993F0;text-decoration:none}
+a:hover{color:#E6BD66}
+@keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* hover states from the design (style-hover) */
+a.nav-link:hover{color:#F6F1FA;background:#201C29}
+a.btn-gold:hover{background:#E6BD66;color:#1A1408}
+a.btn-outline:hover{border-color:#D4A64A;color:#F6F1FA}
+a.pill:hover{border-color:#9B6BE0;color:#F6F1FA}
+a.realm:hover{transform:translateY(-2px);border-color:var(--accent);color:#E9E4EE}
