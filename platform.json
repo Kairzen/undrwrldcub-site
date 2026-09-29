@@ -1,0 +1,10 @@
+{
+  "site": "undrwrldcub.com",
+  "deviations": [
+    {
+      "rule": "host",
+      "why": "Live on Cloudflare Pages since before the platform baseline; move to Workers static assets when convenient (new Worker, move the apex custom domain, delete the Pages project).",
+      "decided": "2026-09-29"
+    }
+  ]
+}

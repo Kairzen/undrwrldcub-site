@@ -1,7 +1,5 @@
-html{background:#0E0C12;color:#E9E4EE;color-scheme:dark}
-body{margin:0;font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:#B993F0;text-decoration:none}
-a:hover{color:#E6BD66}
+/* Site-specific styles. html/body/link basics, fonts and tokens come from @undrwrldcub/brand. */
+html{color-scheme:dark}
 @keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
 /* hover states from the design (style-hover) */
