@@ -4,3 +4,4 @@ dist/
 public/brand/
 .wrangler/
 .DS_Store
+.claude/settings.local.json

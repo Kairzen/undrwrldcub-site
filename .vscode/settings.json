@@ -1,0 +1,6 @@
+{
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.associations": { "wrangler.jsonc": "jsonc" },
+  "search.exclude": { "dist": true, ".astro": true, "public/brand": true, "package-lock.json": true }
+}
