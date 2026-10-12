@@ -4,6 +4,10 @@
 {
   "name": "undrwrldcub-home",
   "compatibility_date": "2026-09-01",
+  // The site is served only from its custom domains: no undrwrldcub-home.<subdomain>.workers.dev duplicate.
+  "workers_dev": false,
+  // Preview URLs stay on for branch and PR builds (set explicitly: the default follows workers_dev).
+  "preview_urls": true,
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page",
