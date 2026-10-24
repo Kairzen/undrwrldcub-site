@@ -23,7 +23,13 @@ npm run build      # -> dist/
   `astro build`. Any difference needs a deviation in `platform.json` (rule, why, decided date) -- ask Wess first.
 - Brand assets come from `@undrwrldcub/brand` (`BrandHead` in `src/layouts/Base.astro`); `public/brand/` is
   generated at build time and never committed. Change fonts, tokens or icons in the platform repo, not here.
-- `src/data/riftbound-events.json` is the single source for the Riftbound schedule.
+- `src/data/riftbound-events.json` is the single source for the Big Deck Energy (local store) schedule.
+- `src/data/riftbound-calendar.json` is the single source for the Riot-wide calendar ("Across the Rift"):
+  drawings, releases, Pre-Rift/Skirmish windows, premier events. The workflow `riftbound-d1.yml` validates it
+  and loads its rows into Cloudflare D1 `riftbound` (table `rb_calendar`, visibility='public') on push to main;
+  needs repo secret CLOUDFLARE_API_TOKEN (D1 edit). Organizer deadlines are private: they live only in D1
+  (visibility='private'), never in this public repo. Validate locally with `node scripts/riftbound-d1.mjs --check`.
+  The scheduled "Riftbound drawing & event watch" edits this file.
 - Free tiers only; never commit secrets.
 - Commit as Wes Sanford <undrwrldcub@gmail.com> (set in this clone's git config).
 

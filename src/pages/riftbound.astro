@@ -8,6 +8,44 @@ const events = rawEvents.map((e) => {
   const label = e.kind === 'prerift' ? 'Pre\u2011Rift' : e.kind === 'competitive' ? 'Skirmish' : 'Nexus Night';
   return { ...e, kind: label, tagBg: t[0], tagColor: t[1] };
 });
+
+// Riot-wide calendar: drawings, releases, Pre-Rift / Skirmish windows, premier events. Single source:
+// src/data/riftbound-calendar.json (also loaded into D1 "riftbound" by .github/workflows/riftbound-d1.yml).
+import rawRiot from '../data/riftbound-calendar.json';
+const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const riotTag: Record<string, [string, string, string]> = {
+  drawing: ['Drawing', '#3A2E18', '#EBC374'],
+  drawing_results: ['Drawing results', '#3A2E18', '#EBC374'],
+  prerift: ['Pre‑Rift', '#3A2E18', '#EBC374'],
+  skirmish: ['Skirmish', '#3A2022', '#EDA39A'],
+  nexus_night: ['Nexus Night', '#1F3327', '#8FD4A4'],
+  release: ['Release', '#1E2A3A', '#8EC3EE'],
+  preview: ['Previews', '#1E2A3A', '#8EC3EE'],
+  product: ['Product', '#1E2A3A', '#8EC3EE'],
+  promo: ['Promo', '#2E2140', '#C7A6EE'],
+  rules: ['Rules', '#2A2A2A', '#CFC8DA'],
+  premier: ['Premier event', '#3A2022', '#EDA39A'],
+  festival: ['Festival', '#2E2140', '#C7A6EE'],
+  convention: ['Convention', '#2E2140', '#C7A6EE'],
+};
+const statusNote: Record<string, string> = { reported: 'Reported', estimated: 'Estimated', tba: 'Details TBA' };
+const md = (d: string) => { const [, m, day] = d.split('-'); return `${MON[+m - 1]} ${+day}`; };
+const fmtTime = (t?: string | null) => {
+  if (!t) return '';
+  const [h, m] = t.split(':').map(Number);
+  return ` · ${((h + 11) % 12) + 1}${m ? ':' + String(m).padStart(2, '0') : ''} ${h < 12 ? 'AM' : 'PM'} PT`;
+};
+const today = new Date().toISOString().slice(0, 10);
+const riot = rawRiot
+  .filter((r) => (r.end_date ?? r.start_date) >= today)
+  .sort((a, b) => a.start_date.localeCompare(b.start_date))
+  .map((r) => {
+    const [label, bg, color] = riotTag[r.kind] ?? riotTag.product;
+    const [, m, d] = r.start_date.split('-');
+    const when = r.end_date && r.end_date !== r.start_date ? `${md(r.start_date)} – ${md(r.end_date)}` : md(r.start_date);
+    return { ...r, label, bg, color, mon: MON[+m - 1], day: String(+d), when: when + fmtTime(r.start_time_pt),
+      last: r.end_date ?? r.start_date, flag: statusNote[r.status ?? ''] };
+  });
 ---
 <Base title="Riftbound · UndrwrldCub">
 <header style="position:sticky;top:0;z-index:50;background:rgba(14,12,18,.92);backdrop-filter:blur(10px);border-bottom:1px solid #2D2838">
@@ -269,6 +307,47 @@ const events = rawEvents.map((e) => {
       <div style="padding:12px 0 10px;font-size:14px;color:#756D84">Radiance Summoner Skirmish dates are posted as Riot confirms them. Registration through the store or PlayRiftbound.com.</div>
     </div>
   </section>
+
+  <section id="riot-calendar" style="margin-top:52px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <h2 style="font-family:'Cinzel',Georgia,serif;font-size:clamp(22px,2.4vw,28px);font-weight:700;margin:0;color:#F6F1FA">Across the Rift</h2>
+      <a href="https://playriftbound.com/en-us/news/announcements" style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:16px;white-space:nowrap">Riot's announcements →</a>
+    </div>
+    <div style="width:44px;height:2px;margin:8px 0 6px;background:linear-gradient(90deg,#D4A64A,transparent)"></div>
+    <p style="margin:0 0 18px;font-size:15px;color:#A69DB4">Riot-wide dates worth knowing: merch-store drawings, set releases, Pre&#8209;Rift and Skirmish windows, and premier events. Times are Pacific.</p>
+    <div style="border:1px solid #2D2838;border-radius:12px;background:#18151F;padding:6px 16px">
+      <ul style="list-style:none;margin:0;padding:0">
+        {riot.map((r) => (
+          <li data-last={r.last} style="display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #2D2838">
+            <div style="flex:0 0 60px;display:flex;flex-direction:column;align-items:center;border:1px solid #6B5628;border-radius:10px;overflow:hidden;background:#13111A;line-height:1.1">
+              <span style="width:100%;text-align:center;background:rgba(212,166,74,.22);color:#E6BD66;font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:3px 0">{r.mon}</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:20px;color:#F6F1FA;padding:5px 0 6px">{r.day}</span>
+            </div>
+            <div style="min-width:0;flex:1">
+              <div style="display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center">
+                <strong style="color:#F6F1FA;font-size:17px">{r.url ? <a href={r.url} style="color:inherit">{r.title}</a> : r.title}</strong>
+                <span style={`font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;padding:1px 8px;border-radius:4px;background:${r.bg};color:${r.color}`}>{r.label}</span>
+                {r.flag && <span style="font-family:'Barlow Semi Condensed',sans-serif;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;padding:0 7px;border:1px solid #4A4258;border-radius:4px;color:#A69DB4">{r.flag}</span>}
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:4px;font-family:'Barlow Semi Condensed',sans-serif;font-size:14.5px;color:#A69DB4">
+                <span>{r.when}</span>{r.location && <span>{r.location}</span>}{r.price && <span>{r.price}</span>}
+              </div>
+              {r.summary && <div style="margin-top:4px;font-size:14px;color:#A69DB4">{r.summary}</div>}
+              {r.details && <div style="margin-top:4px;font-size:13.5px;color:#756D84">{r.details}</div>}
+              <a href={r.source_url} style="display:inline-block;margin-top:4px;font-size:13px">Source</a>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <div style="padding:12px 0 10px;font-size:14px;color:#756D84">Checked twice a week against Riot and UVS Games announcements. Drawings run on the Riot Merch Store; selection emails come from riotgames.com, so check spam.</div>
+    </div>
+  </section>
+  <script is:inline>
+    (() => {
+      const t = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' });
+      document.querySelectorAll('#riot-calendar li[data-last]').forEach((li) => { if (li.dataset.last < t) li.remove(); });
+    })();
+  </script>
 
   <section style="margin-top:52px">
     <h2 style="font-family:'Cinzel',Georgia,serif;font-size:clamp(22px,2.4vw,28px);font-weight:700;margin:0;color:#F6F1FA">Playing and collecting</h2>

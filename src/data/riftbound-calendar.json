@@ -1,0 +1,154 @@
+[
+  {
+    "id": "2026-kda-couture-drawing",
+    "kind": "drawing",
+    "title": "Riftbound x K/DA Couture Collection drawing",
+    "start_date": "2026-10-27",
+    "end_date": "2026-10-30",
+    "start_time_pt": "09:00",
+    "status": "confirmed",
+    "price": "$150 + S&H",
+    "summary": "Registration Oct 27, 9 AM PT to Oct 30, 9 AM PT. First selection emails Nov 3; 24 hours to check out.",
+    "details": "4 K/DA Legends (Evelynn, Ahri, Akali, Kai'Sa), Packed Amphitheater battlefield, playmat, deck box, sleeves, 4 metal D12s, FIRESTARTER keychain. Also sold on-site at Convergence Fest.",
+    "url": "https://merch.riotgames.com",
+    "source_url": "https://playriftbound.com/en-us/news/announcements/riftbounds-2026-drawings"
+  },
+  {
+    "id": "2026-kda-couture-results",
+    "kind": "drawing_results",
+    "title": "K/DA Couture drawing: first selection emails",
+    "start_date": "2026-11-03",
+    "status": "confirmed",
+    "summary": "Check inbox and spam for riotgames.com mail. 24 hours to buy; unclaimed slots are redrawn.",
+    "source_url": "https://playriftbound.com/en-us/news/announcements/product-drawing-faq/"
+  },
+  {
+    "id": "2026-radiance-skirmish-1",
+    "kind": "skirmish",
+    "title": "Summoner Skirmish I (Radiance)",
+    "start_date": "2026-11-09",
+    "end_date": "2026-12-13",
+    "status": "confirmed",
+    "summary": "Window for stores to run the first Radiance Skirmish. Radiance cards join Nexus Night promo packs.",
+    "details": "Reported prizes: Graves and Akali, Brash promos plus playmat.",
+    "source_url": "https://uvsgames.com/wp-content/uploads/2026/07/Radiance-Dates-and-Details.pdf"
+  },
+  {
+    "id": "2026-t1-worlds-drawings",
+    "kind": "drawing",
+    "title": "T1 Player Bundle + Worlds 2026 Edition drawings",
+    "start_date": "2026-11-13",
+    "end_date": "2026-11-16",
+    "start_time_pt": "09:00",
+    "status": "confirmed",
+    "price": "$70 (T1) · $80 (Worlds)",
+    "summary": "Two drawings, same window: Nov 13, 9 AM PT to Nov 16, 9 AM PT. First selection emails Nov 17; ships mid-December.",
+    "details": "T1 2025 Worlds Champion Player Bundle: 5 Champion cards in T1 Worlds skin art, deck box, binder, sleeves, D12 (gold variant chance). Worlds 2026 Edition: Alt Art Yasuo Legend, 3 host-city Battlefields, deck box, foil sleeves; online copies add the Worlds Unvaulted Capsule 2026.",
+    "url": "https://merch.riotgames.com",
+    "source_url": "https://playriftbound.com/en-us/news/announcements/riftbounds-2026-drawings"
+  },
+  {
+    "id": "2026-t1-worlds-results",
+    "kind": "drawing_results",
+    "title": "T1 + Worlds drawings: first selection emails",
+    "start_date": "2026-11-17",
+    "status": "confirmed",
+    "summary": "Check inbox and spam for riotgames.com mail. 24 hours to buy; unclaimed slots are redrawn.",
+    "source_url": "https://playriftbound.com/en-us/news/announcements/riftbounds-2026-drawings"
+  },
+  {
+    "id": "2026-gift-of-the-rift",
+    "kind": "product",
+    "title": "Gift of the Rift Bundle",
+    "start_date": "2026-12-04",
+    "status": "confirmed",
+    "price": "$109",
+    "summary": "First-anniversary bundle at local game stores and retailers.",
+    "details": "16 boosters (3 each Origins, Spiritforged, Unleashed, Vendetta; 4 Radiance), 36 foil runes, Alt Art Akali promo and sleeves (English exclusive), 2000-card storage box.",
+    "source_url": "https://playriftbound.com/en-us/news/announcements/riftbounds-2026-drawings"
+  },
+  {
+    "id": "2026-convergence-fest",
+    "kind": "festival",
+    "title": "Convergence Fest",
+    "start_date": "2026-12-11",
+    "end_date": "2026-12-13",
+    "status": "confirmed",
+    "location": "Las Vegas, NV",
+    "summary": "Riot's Riftbound + TFT festival with the NA Regional Championship (invite-only), side events, free play and the first Legacy previews.",
+    "details": "Three-day GA passes include a commemorative Riftbound card. K/DA Couture Collection sold on-site.",
+    "url": "https://convergencefest.riotgames.com/en-us/",
+    "source_url": "https://convergencefest.riotgames.com/en-us/"
+  },
+  {
+    "id": "2026-radiance-skirmish-2",
+    "kind": "skirmish",
+    "title": "Summoner Skirmish II (Radiance)",
+    "start_date": "2026-12-14",
+    "end_date": "2027-01-17",
+    "status": "confirmed",
+    "summary": "Window for stores to run the second Radiance Skirmish.",
+    "details": "Reported prizes: Lulu and Ahri, Confident promos plus playmat.",
+    "source_url": "https://uvsgames.com/wp-content/uploads/2026/07/Radiance-Dates-and-Details.pdf"
+  },
+  {
+    "id": "2027-legacy-prerift",
+    "kind": "prerift",
+    "title": "Legacy Pre-Rift",
+    "start_date": "2027-01-22",
+    "end_date": "2027-01-28",
+    "status": "confirmed",
+    "summary": "Set 6 Pre-Rift week. Legacy is a League Classic crossover: Ashe, Garen, Heimerdinger, Illaoi, Karma, Lux, Tryndamere, Vladimir and more.",
+    "details": "Kit contents and Pre-Rift promo to be announced.",
+    "source_url": "https://playriftbound.com/en-us/news/announcements/products-and-sets-into-2027/"
+  },
+  {
+    "id": "2027-legacy-release",
+    "kind": "release",
+    "title": "Legacy releases",
+    "start_date": "2027-01-29",
+    "status": "confirmed",
+    "summary": "Set 6 street date.",
+    "source_url": "https://playriftbound.com/en-us/news/announcements/products-and-sets-into-2027/"
+  },
+  {
+    "id": "2027-proving-grounds-2e",
+    "kind": "product",
+    "title": "Proving Grounds, 2nd Edition",
+    "start_date": "2027-02-19",
+    "status": "confirmed",
+    "summary": "Retail release.",
+    "source_url": "https://playriftbound.com/en-us/news/announcements/products-and-sets-into-2027/"
+  },
+  {
+    "id": "2027-continental-dallas",
+    "kind": "premier",
+    "title": "Riftbound Continental Dallas",
+    "start_date": "2027-03-26",
+    "end_date": "2027-03-28",
+    "status": "tba",
+    "location": "Kay Bailey Hutchison Convention Center, Dallas, TX",
+    "summary": "Day 1 is an open-entry qualifier; the main event starts Saturday. Tickets to be announced.",
+    "source_url": "https://playriftbound.com/en-us/news/organizedplay/riftbound-premier-play-early-2027-events"
+  },
+  {
+    "id": "2027-reckoning-prerift",
+    "kind": "prerift",
+    "title": "The Reckoning Pre-Rift",
+    "start_date": "2027-04-23",
+    "end_date": "2027-04-29",
+    "status": "confirmed",
+    "summary": "Set 7 Pre-Rift week. Featured champions include Aurelion Sol, Cho'Gath, Shyvana, Vayne and Zilean.",
+    "details": "Previews, kit contents and promo to be announced.",
+    "source_url": "https://playriftbound.com/en-us/news/announcements/products-and-sets-into-2027/"
+  },
+  {
+    "id": "2027-reckoning-release",
+    "kind": "release",
+    "title": "The Reckoning releases",
+    "start_date": "2027-04-30",
+    "status": "confirmed",
+    "summary": "Set 7 street date.",
+    "source_url": "https://playriftbound.com/en-us/news/announcements/products-and-sets-into-2027/"
+  }
+]
