@@ -1,6 +1,6 @@
 // Cloudflare Workers static assets (platform baseline host). No Worker script: files only.
 // Deployed by Workers Builds: build `npm run build`, deploy `npx wrangler deploy`.
-// The apex custom domain is added in a second step, after it is removed from the old Pages project.
+// Custom domains undrwrldcub.com and www.undrwrldcub.com are attached to this Worker (dashboard).
 {
   "name": "undrwrldcub-home",
   "compatibility_date": "2026-09-01",
@@ -12,5 +12,7 @@
     "directory": "./dist",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
-  }
+  },
+  // Branch and PR builds run `npx wrangler preview`, which requires this block (it may stay empty).
+  "previews": {}
 }
