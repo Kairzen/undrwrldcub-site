@@ -46,6 +46,35 @@ const riot = rawRiot
     return { ...r, label, bg, color, mon: MON[+m - 1], day: String(+d), when: when + fmtTime(r.start_time_pt),
       last: r.end_date ?? r.start_date, flag: statusNote[r.status ?? ''] };
   });
+
+// News and the judge corner. Sources: src/data/riftbound-news.json (newest first; loaded into D1 rb_news
+// with the calendar) and src/data/riftbound-rules.json (current rules documents and ban list).
+import rawNews from '../data/riftbound-news.json';
+import rulesRef from '../data/riftbound-rules.json';
+const newsCat: Record<string, [string, string, string]> = {
+  rules: ['Rules', '#2A2A2A', '#CFC8DA'],
+  judge: ['Judge', '#3A2E18', '#EBC374'],
+  organized_play: ['Organized play', '#3A2022', '#EDA39A'],
+  product: ['Product', '#2E2140', '#C7A6EE'],
+  announcement: ['Announcement', '#1E2A3A', '#8EC3EE'],
+  event_report: ['Event report', '#1F3327', '#8FD4A4'],
+};
+const longDate = (d: string) => { const [y, m, day] = d.split('-'); return `${MON[+m - 1]} ${+day}, ${y}`; };
+const NEWS_SHOWN = 8;
+const news = rawNews.map((n, i) => {
+  const [label, bg, color] = newsCat[n.category] ?? newsCat.announcement;
+  const cats = [n.category, ...(n.judge_note && n.category !== 'judge' ? ['judge'] : [])];
+  const host = new URL(n.url).hostname.replace(/^www\./, '');
+  const cta = /youtu/.test(host) ? 'Watch on YouTube' : /\.pdf$/i.test(n.url) ? 'Open the PDF' : `Read on ${host}`;
+  return { ...n, label, bg, color, cats: cats.join(' '), date: longDate(n.published), cta, older: i >= NEWS_SHOWN,
+    effective: n.effective_date ? `Effective ${md(n.effective_date)}` : '' };
+});
+const newsFilters = [['all', 'All'], ['rules', 'Rules'], ['judge', 'Judge'], ['organized_play', 'Organized play'],
+  ['product', 'Product'], ['announcement', 'Announcements'], ['event_report', 'Event reports']]
+  .map(([key, label]) => ({ key, label, n: key === 'all' ? news.length : news.filter((x) => x.cats.split(' ').includes(key)).length }))
+  .filter((f) => f.n > 0);
+const docs = rulesRef.documents.map((d) => ({ ...d, when: longDate(d.updated) }));
+const banned = rulesRef.banned;
 ---
 <Base title="Riftbound · UndrwrldCub">
 <header style="position:sticky;top:0;z-index:50;background:rgba(14,12,18,.92);backdrop-filter:blur(10px);border-bottom:1px solid #2D2838">
@@ -97,54 +126,115 @@ const riot = rawRiot
     </div>
   </section>
 
-  <section id="prerift" style="margin-top:52px;position:relative;border:1px solid #6B5628;border-radius:18px;overflow:hidden;background:#0c0b10;box-shadow:0 40px 80px -40px rgba(0,0,0,.95)">
-    <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 90% at 80% 20%,rgba(212,166,74,.22),transparent 65%),radial-gradient(60% 80% at 10% 100%,rgba(155,107,224,.28),transparent 70%)"></div>
-    <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));min-height:380px">
-      <div style="position:relative;min-height:260px">
-        <img src="/riftbound/radiance-keyart.jpg" alt="Riftbound: Radiance key art featuring Ekko and Seraphine" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%">
-        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 55%,#0c0b10 100%),linear-gradient(0deg,rgba(12,11,16,.7) 0%,transparent 30%)"></div>
-      </div>
-      <div style="position:relative;padding:32px 34px 30px;display:flex;flex-direction:column;gap:14px">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
-          <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#E4B45A">Pre‑Rift · Set 5 · Sealed</div>
-        </div>
-        <img src="/riftbound/radiance-wordmark.jpg" alt="Radiance" style="display:block;width:min(100%,340px);height:auto;mix-blend-mode:screen">
-        <h2 style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(26px,3.2vw,36px);line-height:1.08;color:#F6F1FA;margin:0;background:linear-gradient(180deg,#FBF6FF 30%,#EBC374 100%);-webkit-background-clip:text;background-clip:text;color:transparent">Own the stage. Open the set first.</h2>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;font-family:'Barlow Semi Condensed',sans-serif">
-          <div style="display:flex;flex-direction:column;align-items:center;min-width:72px;border:1px solid #6B5628;border-radius:10px;overflow:hidden;background:#13111A;line-height:1.1">
-            <span style="width:100%;text-align:center;background:rgba(212,166,74,.22);color:#E6BD66;font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:3px 0">Oct</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:26px;color:#F6F1FA;padding:6px 0 7px">16</span>
-          </div>
-          <div style="padding:8px 14px;border:1px solid #3A3347;border-radius:10px;background:#13111A">
-            <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#A69DB4">Friday</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:20px;color:#F6F1FA">6:00–10:00 PM</div>
-          </div>
-          <div style="padding:8px 14px;border:1px solid #3A3347;border-radius:10px;background:#13111A">
-            <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#A69DB4">Where</div>
-            <div style="font-size:16px;font-weight:600;color:#F6F1FA">Big Deck Energy Games</div>
-          </div>
-          <div style="padding:8px 14px;border:1px solid #3A3347;border-radius:10px;background:#13111A">
-            <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#A69DB4">Seats</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:20px;color:#F6F1FA">24</div>
-          </div>
-        </div>
-        <ul style="list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:15px;color:#E9E4EE">
-          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span>Your Pre‑Rift kit: a 15‑card mini‑deck seeded with one of nine new Legends (Champion Legend, Champion Unit, and its runes), plus five Radiance boosters. Everything is yours to keep.</span></li>
-          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span>Heimerdinger, Academy Instructor Pre‑Rift promo for every player, while supplies last. Booster prizes from a full Radiance display.</span></li>
-          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span>Build from what you open, then a paired sealed tournament. Beginner‑friendly by design.</span></li>
-          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span>24 seats. Sign‑up strongly suggested; this will sell out.</span></li>
+  <section id="news" style="margin-top:52px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <h2 style="font-family:'Cinzel',Georgia,serif;font-size:clamp(22px,2.4vw,28px);font-weight:700;margin:0;color:#F6F1FA">Riftbound news</h2>
+      <a href="https://playriftbound.com/en-us/news/" style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:16px;white-space:nowrap">All of Riot's news →</a>
+    </div>
+    <div style="width:44px;height:2px;margin:8px 0 6px;background:linear-gradient(90deg,#6FB2E8,transparent)"></div>
+    <p style="margin:0 0 16px;font-size:15px;color:#A69DB4">Rules updates, organized play changes and product news, newest first. Every item links to the article itself; items that change how we run events carry a judge's note.</p>
+    <div class="rb-news-filters" role="group" aria-label="Filter news" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;font-family:'Barlow Semi Condensed',sans-serif">
+      {newsFilters.map((f) => (
+        <button type="button" class="rb-nf" data-cat={f.key} aria-pressed={f.key === 'all' ? 'true' : 'false'}>{f.label} <span style="color:#756D84">{f.n}</span></button>
+      ))}
+    </div>
+    <div style="border:1px solid #2D2838;border-radius:12px;background:#18151F;padding:6px 16px">
+      <ul id="rb-news-list" style="list-style:none;margin:0;padding:0">
+        {news.map((n) => (
+          <li data-cats={n.cats} data-older={n.older ? '1' : undefined} hidden={n.older} style="padding:16px 0;border-bottom:1px solid #2D2838">
+            <div style="display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font-family:'Barlow Semi Condensed',sans-serif;font-size:14px;color:#A69DB4">
+              <span style={`font-weight:600;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;padding:1px 8px;border-radius:4px;background:${n.bg};color:${n.color}`}>{n.label}</span>
+              <time datetime={n.published}>{n.date}</time>
+              <span>{n.source}</span>
+              {n.effective && <span style="font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;padding:0 7px;border:1px solid #4A4258;border-radius:4px;color:#CFC8DA">{n.effective}</span>}
+            </div>
+            <h3 style="margin:6px 0 4px;font-size:18px;line-height:1.3"><a href={n.url} target="_blank" rel="noopener" style="color:#F6F1FA">{n.title}</a></h3>
+            <p style="margin:0;font-size:15px;color:#A69DB4;max-width:80ch;text-wrap:pretty">{n.summary}</p>
+            {n.judge_note && (
+              <div style="margin-top:10px;max-width:80ch;padding:10px 14px;border-left:3px solid #D4A64A;border-radius:0 8px 8px 0;background:rgba(212,166,74,.08);font-size:14.5px;color:#E9E4EE">
+                <span style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:#E6BD66;margin-right:8px">Judge's note</span>{n.judge_note}
+              </div>
+            )}
+            <a href={n.url} target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-size:14px">{n.cta} ↗</a>
+          </li>
+        ))}
+      </ul>
+      <p id="rb-news-empty" hidden style="margin:14px 0;color:#A69DB4;font-size:15px">Nothing in this category yet.</p>
+      {news.some((n) => n.older) && <button type="button" id="rb-news-more" class="rb-nf" style="margin:14px 0 10px">Show older news</button>}
+    </div>
+  </section>
+  <script is:inline>
+    (() => {
+      const btns = document.querySelectorAll('.rb-nf[data-cat]');
+      const items = document.querySelectorAll('#rb-news-list li');
+      const empty = document.getElementById('rb-news-empty');
+      const more = document.getElementById('rb-news-more');
+      let cat = 'all', all = false;
+      const apply = () => {
+        let shown = 0;
+        items.forEach((li) => {
+          const match = cat === 'all' || li.dataset.cats.split(' ').includes(cat);
+          const on = match && (all || cat !== 'all' || !li.dataset.older);
+          li.hidden = !on; if (on) shown++;
+        });
+        empty.hidden = shown > 0;
+        if (more) more.hidden = all || cat !== 'all';
+        btns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.cat === cat)));
+      };
+      btns.forEach((b) => b.addEventListener('click', () => { cat = b.dataset.cat; apply(); }));
+      if (more) more.addEventListener('click', () => { all = true; apply(); });
+    })();
+  </script>
+
+  <section id="judge" style="margin-top:52px;position:relative;padding:30px 34px;border:1px solid #6B5628;border-radius:16px;background:linear-gradient(135deg,rgba(32,28,41,.92),rgba(20,17,27,.92));box-shadow:0 30px 60px -30px rgba(0,0,0,.9),inset 0 1px 0 rgba(230,189,102,.12)">
+    <div style="position:absolute;left:24px;right:24px;top:-1px;height:2px;background:linear-gradient(90deg,transparent,#D4A64A,#6FB2E8,transparent);border-radius:2px"></div>
+    <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#D4A64A">Big Deck Energy · Riftbound judge</div>
+    <h2 style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(26px,3.4vw,38px);line-height:1.1;color:#F6F1FA;margin:10px 0 8px">The judge's table</h2>
+    <p style="font-size:17px;color:#A69DB4;max-width:76ch;margin:0 0 22px;text-wrap:pretty">We judge the Riftbound events at Big Deck Energy Games. If a game state looks wrong or a card does something you didn't expect, raise a hand and call "judge." Asking is never a penalty, and the earlier we see an error, the simpler the fix.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px 32px">
+      <div>
+        <h3 style="margin:0 0 10px;font-size:19px;color:#F6F1FA">How we run the table</h3>
+        <ul style="list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px;color:#E9E4EE">
+          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Nexus Night and Pre‑Rift are casual.</strong> We fix the game and keep it friendly. Letting an opponent take back a misplay isn't required, but we encourage it.</span></li>
+          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Summoner Skirmish is competitive.</strong> Registered decks and Tournament Rules penalties. Once your opponent has had to point something out, your decision stands.</span></li>
+          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Deck checks happen at the start of a round</strong> and cover the whole deck: main deck, runes, Battlefields, Legend and sideboard.</span></li>
+          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Notes are fine until opening hands.</strong> Look at your notes while sideboarding; put them away once you draw.</span></li>
+          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Bluffing about hidden information is legal.</strong> Lying about public information, or how a card works, is not.</span></li>
+          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Tokens need a real card object</strong> with a clear ready or exhausted state your opponent can read.</span></li>
+          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Errata and the FAQ beat the printed card.</strong> We rule from the current text below.</span></li>
         </ul>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:6px">
-          <a href="https://playriftbound.com/events" style="display:inline-flex;align-items:center;justify-content:center;height:46px;padding:0 20px;border-radius:10px;font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:17px;background:#D4A64A;color:#1A1408;box-shadow:0 6px 20px -8px rgba(212,166,74,.7)"class="btn-gold">Sign up on PlayRiftbound.com</a>
+      </div>
+      <div style="display:grid;gap:18px;align-content:start">
+        <div>
+          <h3 style="margin:0 0 10px;font-size:19px;color:#F6F1FA">Current rules documents</h3>
+          <ul style="list-style:none;margin:0;padding:0;border:1px solid #3A3347;border-radius:12px;background:#13111A">
+            {docs.map((d, i) => (
+              <li style={`display:flex;gap:12px;justify-content:space-between;align-items:baseline;padding:10px 14px;${i ? 'border-top:1px solid #2D2838;' : ''}`}>
+                <div style="min-width:0"><a href={d.url} target="_blank" rel="noopener" style="font-weight:600">{d.name}</a><div style="font-size:13.5px;color:#A69DB4">{d.note}</div></div>
+                <span style="flex:0 0 auto;font-family:'IBM Plex Mono',monospace;font-size:13px;color:#756D84">{d.when}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-        <div style="font-size:12.5px;color:#756D84">Radiance releases Oct 23. Riftbound: League of Legends ™ &amp; © 2026 Riot Games, Inc. Artwork used under license via UVS Games retailer materials to promote a sanctioned store event.</div>
+        <div>
+          <h3 style="margin:0 0 4px;font-size:19px;color:#F6F1FA">Banned in Constructed</h3>
+          <div style="font-size:13.5px;color:#756D84;margin-bottom:10px">Updated {longDate(banned.updated)} · all sets are legal; rotation starts in 2028</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 18px;font-size:14.5px;color:#E9E4EE">
+            <div><div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#A69DB4;margin-bottom:4px">Cards</div>{banned.constructed.cards.map((c) => <div>{c}</div>)}</div>
+            <div><div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#A69DB4;margin-bottom:4px">Battlefields</div>{banned.constructed.battlefields.map((c) => <div>{c}</div>)}</div>
+          </div>
+          <div style="margin-top:8px;font-size:13.5px;color:#A69DB4">2v2 Constructed also bans {banned.two_v_two_extra_legends.join(', ')}. <a href={banned.source_url} target="_blank" rel="noopener">Rules Hub ↗</a></div>
+        </div>
+        <div style="padding:12px 14px;border:1px solid #3A3347;border-radius:12px;background:#13111A;font-size:14.5px;color:#A69DB4">
+          <strong style="color:#F6F1FA">Want to judge?</strong> UVS runs the certification test from your Riftbound account. <a href={rulesRef.judge.become_url} target="_blank" rel="noopener">Take the judge test ↗</a>
+        </div>
       </div>
     </div>
   </section>
 
   <section style="margin-top:28px">
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <h2 style="font-family:'Cinzel',Georgia,serif;font-size:clamp(20px,2.2vw,24px);font-weight:700;margin:0;color:#F6F1FA">On the shelf October 23</h2>
+      <h2 style="font-family:'Cinzel',Georgia,serif;font-size:clamp(20px,2.2vw,24px);font-weight:700;margin:0;color:#F6F1FA">On the shelf now: Radiance</h2>
       <span style="font-family:'Barlow Semi Condensed',sans-serif;font-size:15px;color:#A69DB4">180 cards · 60+ showcase · 14‑card boosters</span>
     </div>
     <div style="width:44px;height:2px;margin:8px 0 16px;background:linear-gradient(90deg,#E4B45A,transparent)"></div>
@@ -168,13 +258,6 @@ const riot = rawRiot
         <div style="padding:14px 16px 16px">
           <div style="font-weight:600;color:#F6F1FA">Vault</div>
           <div style="font-size:14px;color:#A69DB4;margin-top:2px">6 boosters, 3 foil promo tokens, 36 basic runes, storage box and dividers. $34.99.</div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;background:#18151F;border:1px solid #2D2838;border-radius:12px;overflow:hidden">
-        <div style="height:150px;background:#000;display:flex;align-items:center;justify-content:center;padding:10px"><img src="/riftbound/prerift-kit.jpg" alt="Radiance Pre-Rift player kit" style="max-width:100%;max-height:100%;object-fit:contain"></div>
-        <div style="padding:14px 16px 16px">
-          <div style="font-weight:600;color:#F6F1FA">Pre‑Rift Kit</div>
-          <div style="font-size:14px;color:#A69DB4;margin-top:2px">Event only, Oct 16. Mini‑deck, five boosters, promo. Not sold separately.</div>
         </div>
       </div>
     </div>
@@ -231,9 +314,9 @@ const riot = rawRiot
     <p style="color:#A69DB4;max-width:76ch;margin:0 0 18px;text-wrap:pretty">Riot's August 2026 State of Play redrew organized play. Too many Skirmish byes went unused, so the Skirmish is being split into two programs that each do one job. Pre‑Rift and Nexus Night stay exactly as they are.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
       <div style="background:#18151F;border:1px solid #2D2838;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:6px">
-        <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#D4A64A">New · Monthly · In store</div>
+        <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#D4A64A">New · Per set · In store</div>
         <h3 style="margin:0;font-size:20px;color:#F6F1FA">Nexus Cup</h3>
-        <p style="margin:0;color:#A69DB4;font-size:15px">A monthly local championship that crowns a store champion without feeding into the competitive ladder. Competitive on the night, no pressure beyond it.</p>
+        <p style="margin:0;color:#A69DB4;font-size:15px">A store championship each set that crowns a local champion without feeding into the competitive ladder. Winner and Top 8 promos, a participation promo and a winner playmat.</p>
       </div>
       <div style="background:#18151F;border:1px solid #2D2838;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:6px">
         <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#E06A58">New · Curated stores</div>
@@ -243,7 +326,7 @@ const riot = rawRiot
       <div style="background:#18151F;border:1px solid #2D2838;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:6px">
         <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#6FB2E8">Platform</div>
         <h3 style="margin:0;font-size:20px;color:#F6F1FA">PlayRiftbound.com</h3>
-        <p style="margin:0;color:#A69DB4;font-size:15px">Store events are moving off Carde.io to Riot's own platform, starting September 14 with Radiance events. Make an account there before your next Pre‑Rift.</p>
+        <p style="margin:0;color:#A69DB4;font-size:15px">Store events are moving off Carde.io to Riot's own platform, starting with Radiance events. Make an account there before your next event.</p>
       </div>
     </div>
     <div style="margin-top:14px;font-size:14px;color:#756D84">Above the store: Regional Qualifiers become Riftbound Regionals (3–4 per set), Regional Championships become Continentals (four per year, three days each), and a World Championship caps the season. Unused Skirmish byes stay valid at Regionals through 2027. Source: <a href="https://playriftbound.com/en-us/news/organizedplay/august-2026-state-of-play">August 2026 State of Play</a>.</div>
@@ -264,7 +347,7 @@ const riot = rawRiot
       </li>
       <li style="display:flex;gap:16px;align-items:flex-start;background:#13111A;border:1px solid #3A3347;border-radius:12px;padding:14px 18px">
         <span style="font-family:'IBM Plex Mono',monospace;color:#D4A64A;font-size:15px;padding-top:3px">03</span>
-        <div><strong style="color:#F6F1FA">Host a monthly Nexus Cup from day one.</strong> <span style="color:#A69DB4">A store champion every month, on a Friday, so regulars don't need a second night out.</span></div>
+        <div><strong style="color:#F6F1FA">Host the Nexus Cup every set, from Legacy on.</strong> <span style="color:#A69DB4">A store champion each set, on a Friday, so regulars don't need a second night out.</span></div>
       </li>
       <li style="display:flex;gap:16px;align-items:flex-start;background:#13111A;border:1px solid #3A3347;border-radius:12px;padding:14px 18px">
         <span style="font-family:'IBM Plex Mono',monospace;color:#D4A64A;font-size:15px;padding-top:3px">04</span>

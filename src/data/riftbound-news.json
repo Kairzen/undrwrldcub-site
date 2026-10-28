@@ -1,0 +1,108 @@
+[
+  {
+    "id": "2026-10-27-kda-fortiche-behind-the-scenes",
+    "category": "announcement",
+    "title": "Riftbound x K/DA: behind the scenes with Fortiche",
+    "published": "2026-10-27",
+    "source": "Riot Games",
+    "summary": "Fortiche walks through how it designed Evelynn for the K/DA Couture Collection. The drawing is open now through Oct 30, 9 AM PT.",
+    "url": "https://youtu.be/egXq3n8UHfE"
+  },
+  {
+    "id": "2026-10-27-all-eyes-on-rc-europe",
+    "category": "event_report",
+    "title": "All eyes on RC Europe",
+    "published": "2026-10-27",
+    "source": "Riot Games",
+    "summary": "Preview of the European Regional Championship in Stuttgart, Germany, the first Regional Championship played under the new competitive-integrity rules.",
+    "url": "https://playriftbound.com/en-us/news/organizedplay/all-eyes-on-rc-europe"
+  },
+  {
+    "id": "2026-10-26-radiance-rules-faq",
+    "category": "rules",
+    "title": "Radiance rules FAQ and clarifications",
+    "published": "2026-10-26",
+    "source": "Riot Games",
+    "summary": "Official rulings for Radiance interactions, including Neeko, Blending In through Kharox, Seraphic Wyvern with Mobilize, Mordekaiser, Iron Revenant paying costs, and Runeblade Anvil timing.",
+    "judge_note": "Where this FAQ and the Core Rules disagree, the FAQ wins until the next Core Rules release. We rule from it at the table.",
+    "url": "https://playriftbound.com/en-us/news/organizedplay/radiance-rules-faq-and-clarifications"
+  },
+  {
+    "id": "2026-10-26-2027-local-play",
+    "category": "organized_play",
+    "title": "Riftbound 2027 Local Play: Nexus Cup, Challenge Series, unused byes",
+    "published": "2026-10-26",
+    "source": "Riot Games",
+    "summary": "Nexus Cup is a per-set store championship with Winner, Top 8 and participation promos plus a winner playmat. Challenge Series runs only at select stores and feeds the competitive ladder. Unused Summoner Skirmish byes work at any 2027 Regional (email OP@uvsgames.com at least 14 days before) or trade 1-for-1 for a promo from The Reckoning by Dec 31, 2027.",
+    "url": "https://playriftbound.com/en-us/news/organizedplay/riftbound-2027-local-play"
+  },
+  {
+    "id": "2026-10-26-2027-premier-play",
+    "category": "organized_play",
+    "title": "Riftbound 2027 Premier Play",
+    "published": "2026-10-26",
+    "source": "Riot Games",
+    "summary": "Overview of the revamped 2027 competitive ladder: Challenge Series, Regionals, Continentals and the World Championship.",
+    "url": "https://playriftbound.com/en-us/news/organizedplay/riftbound-2027-premier-play"
+  },
+  {
+    "id": "2026-10-22-riftbound-2026-drawings",
+    "category": "product",
+    "title": "Riftbound's 2026 drawings",
+    "published": "2026-10-22",
+    "source": "Riot Games",
+    "summary": "Details for the K/DA Couture Collection, T1 Player Bundle and Worlds 2026 Edition drawings, plus the Gift of the Rift bundle on Dec 4. Dates are in Across the Rift below.",
+    "url": "https://playriftbound.com/en-us/news/announcements/riftbounds-2026-drawings"
+  },
+  {
+    "id": "2026-10-15-testing-start-of-game-rules",
+    "category": "rules",
+    "title": "Riot is testing new start-of-game rules",
+    "published": "2026-10-15",
+    "source": "Riot Games",
+    "summary": "To even out going first versus second, select events outside premier play will test choosing turn order before Battlefields, and giving the second player one extra perk on top of the third rune: start at 1 point, draw an extra card, or predict before the first draw. This is a test, not a rules change.",
+    "judge_note": "Standard rules apply at Big Deck Energy unless we announce a test variant before the event starts.",
+    "url": "https://playriftbound.com/en-us/news/organizedplay/testing-start-of-game-rules"
+  },
+  {
+    "id": "2026-10-15-rc-competitive-integrity-prizing",
+    "category": "organized_play",
+    "title": "Regional Championships: competitive integrity and prizing",
+    "published": "2026-10-15",
+    "source": "Riot Games",
+    "summary": "Overnumbered Foil Plated Legends now go to the top 58 finishers by draft; Unleashed, Vendetta and Radiance Foil Plated Legends become the Best-Of prizes. Regional Championships ban asking for or offering match concessions, ban deciding drawn matches after time, and use open decklists.",
+    "judge_note": "Intentional draws before time and tactical concessions of a non-deciding game stay legal. Rolling or flipping to decide a match after time is not, at any level.",
+    "url": "https://playriftbound.com/en-us/news/organizedplay/regional-championships-competitive-integrity-prizing"
+  },
+  {
+    "id": "2026-10-09-tournament-rules-changelog",
+    "category": "judge",
+    "title": "October 2026 Tournament Rules changelog",
+    "published": "2026-10-09",
+    "effective_date": "2026-10-16",
+    "source": "Riot Games",
+    "summary": "A judge-feedback cleanup: clearer limits on changing gameplay decisions (509), reworked Deck Presentation Error remedies, floor judges must fix errors they see, bluffing about private information is legal, randomized deck checks happen at round start, and Radiance joins Standard.",
+    "judge_note": "Nexus Night is casual OPL: we don't require takebacks, but we encourage them when a newer player misreads the board. At competitive OPL a decision stands once your opponent has had to point something out.",
+    "url": "https://playriftbound.com/en-us/news/announcements/october-2026-tournament-rules-changelog"
+  },
+  {
+    "id": "2026-10-09-core-rules-radiance-patch-notes",
+    "category": "rules",
+    "title": "Core Rules: Radiance patch notes",
+    "published": "2026-10-09",
+    "effective_date": "2026-10-16",
+    "source": "Riot Games",
+    "summary": "Rules for Radiance's new mechanics, folded-in Vendetta FAQ rulings, structural cleanup for future sets, and worked examples of the trickier interactions.",
+    "url": "https://playriftbound.com/en-us/news/announcements/core-rules-radiance-patch-notes-effective-october-16-2026"
+  },
+  {
+    "id": "2026-10-09-radiance-errata",
+    "category": "rules",
+    "title": "Radiance errata",
+    "published": "2026-10-09",
+    "source": "Riot Games",
+    "summary": "Text updates for Elnuk Herd (can now target itself as a friendly unit), Last Caress, Forbidden Technique and Neeko, Blending In (choose up to 3 Legends).",
+    "judge_note": "Errata beats the printed card. If your copy reads differently, the errata text is the one we use.",
+    "url": "https://playriftbound.com/en-us/news/announcements/radiance-errata-updates"
+  }
+]

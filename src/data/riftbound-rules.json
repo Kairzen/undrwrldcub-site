@@ -1,0 +1,23 @@
+{
+  "checked": "2026-10-28",
+  "documents": [
+    { "name": "Core Rules", "updated": "2026-10-09", "note": "How the game works: timing, resolution, deckbuilding.", "url": "https://cmsassets.rgpub.io/sanity/files/dsfx7636/news_live/5c7946f7c3b8c6e0faff85ab6dadc6d2e721ea94.pdf" },
+    { "name": "Tournament Rules", "updated": "2026-10-09", "note": "Penalties, remedies, OPLs, deck checks. Effective Oct 16.", "url": "https://cmsassets.rgpub.io/sanity/files/dsfx7636/news_live/861752822d217edf37d9febaeaf77a7d924c1bb6.pdf" },
+    { "name": "Radiance Rules FAQ", "updated": "2026-10-26", "note": "Official rulings; overrides the Core Rules where they differ.", "url": "https://playriftbound.com/en-us/news/organizedplay/radiance-rules-faq-and-clarifications" },
+    { "name": "Radiance Errata", "updated": "2026-10-09", "note": "Current text for four Radiance cards.", "url": "https://playriftbound.com/en-us/news/announcements/radiance-errata-updates" },
+    { "name": "Rules Hub", "updated": "2026-10-09", "note": "Riot's index of every rules document, patch note and errata.", "url": "https://playriftbound.com/en-us/rules-hub/" }
+  ],
+  "banned": {
+    "updated": "2026-09-18",
+    "source_url": "https://playriftbound.com/en-us/rules-hub/",
+    "constructed": {
+      "cards": ["Called Shot", "Draven, Vanquisher", "Ekko, Recurrent", "Fight or Flight", "Scrapheap", "Stacked Deck", "Stealthy Pursuer"],
+      "battlefields": ["Aspirant's Climb", "Dreaming Tree", "Obelisk of Power", "Reaver's Row", "The Arena's Greatest"]
+    },
+    "two_v_two_extra_legends": ["Master Yi, Wuju Bladesman"]
+  },
+  "judge": {
+    "become_url": "https://locator.riftbound.uvsgames.com/settings/account-management",
+    "tournament_rules_url": "https://cmsassets.rgpub.io/sanity/files/dsfx7636/news_live/861752822d217edf37d9febaeaf77a7d924c1bb6.pdf"
+  }
+}

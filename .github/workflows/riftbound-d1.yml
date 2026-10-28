@@ -1,17 +1,21 @@
-name: Riftbound calendar -> D1
+name: Riftbound data -> D1
 
-# Validates src/data/riftbound-calendar.json on every PR and push; on main it also loads the public rows
-# into the Cloudflare D1 database "riftbound". The site itself is rebuilt by Workers Builds on the same push.
+# Validates the Riftbound data files (calendar, news, rules) on every PR and push; on main it also loads the
+# public calendar rows and the news into the Cloudflare D1 database "riftbound". The site itself is rebuilt by Workers Builds on the same push.
 on:
   push:
     branches: [main]
     paths:
       - src/data/riftbound-calendar.json
+      - src/data/riftbound-news.json
+      - src/data/riftbound-rules.json
       - scripts/riftbound-d1.mjs
       - .github/workflows/riftbound-d1.yml
   pull_request:
     paths:
       - src/data/riftbound-calendar.json
+      - src/data/riftbound-news.json
+      - src/data/riftbound-rules.json
       - scripts/riftbound-d1.mjs
   workflow_dispatch:
 
