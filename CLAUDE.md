@@ -23,7 +23,6 @@ npm run build      # -> dist/
   `astro build`. Any difference needs a deviation in `platform.json` (rule, why, decided date) -- ask Wess first.
 - Brand assets come from `@undrwrldcub/brand` (`BrandHead` in `src/layouts/Base.astro`); `public/brand/` is
   generated at build time and never committed. Change fonts, tokens or icons in the platform repo, not here.
-- `src/data/riftbound-events.json` is the single source for the Big Deck Energy (local store) schedule.
 - `src/data/riftbound-calendar.json` is the single source for the Riot-wide calendar ("Across the Rift"):
   drawings, releases, Pre-Rift/Skirmish windows, premier events. The workflow `riftbound-d1.yml` validates it
   and loads its rows into Cloudflare D1 `riftbound` (table `rb_calendar`, visibility='public') on push to main;
@@ -35,10 +34,17 @@ npm run build      # -> dist/
   effective_date, source, summary, optional judge_note, url. `url` must be the article or video itself (never a
   home page or channel; validation fails otherwise). Items with a judge_note also show under the Judge filter.
   The same workflow loads it into D1 `riftbound` table `rb_news` (replaced in full). The Riftbound page speaks as a
-  collector and player (since 2026-10-29 Wess no longer judges or runs play at Big Deck Energy): judge notes are
-  general rules guidance, never store policy or "we rule". The watch adds items; drop ones older than ~90 days.
-- `src/data/riftbound-rules.json` feeds the "Judge's corner": current rules documents with dates,
-  the Constructed and 2v2 ban lists, and the judge-test link. Site-only (validated, not loaded into D1).
+  collector and player (since 2026-10-29 Wess no longer judges or runs play at Big Deck Energy, and the page
+  carries no store info): judge notes are general rules guidance, never store policy or "we rule". The watch adds
+  items; drop ones older than ~90 days.
+- `src/data/riftbound-rules.json` feeds the "Judge's corner" (Wess is a certified judge, not active): current
+  rules documents with dates, the Constructed and 2v2 ban lists, and the judge-test link. Site-only.
+- `src/data/riftbound-player.json`: `attending` (events Wess is going to: id, title, start_date, end_date, location,
+  url), `decks` (legend, name, url to the deckbuilder list, note, updated), `results` (date, event, format, legend,
+  record like 3-1, placement, players; from his PlayRiftbound.com history). Site-only.
+- `src/data/riftbound-collection.json`: `as_of`, `sets` (set, owned unique cards, total in set) and `top_cards`
+  (name, set, number, rarity, variance, price) from the Collectr export. Card prices only: never publish portfolio
+  totals, spend or ROI. Site-only. Every player/collection block renders only when it has data.
 - Free tiers only; never commit secrets.
 - Commit as Wes Sanford <undrwrldcub@gmail.com> (set in this clone's git config).
 

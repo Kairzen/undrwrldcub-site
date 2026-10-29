@@ -1,14 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import rawEvents from '../data/riftbound-events.json';
-
-const tag: Record<string, [string, string]> = { casual: ['#1F3327', '#8FD4A4'], prerift: ['#3A2E18', '#EBC374'], competitive: ['#3A2022', '#EDA39A'] };
-const events = rawEvents.map((e) => {
-  const t = tag[e.kind] || tag.casual;
-  const label = e.kind === 'prerift' ? 'Pre\u2011Rift' : e.kind === 'competitive' ? 'Skirmish' : 'Nexus Night';
-  return { ...e, kind: label, tagBg: t[0], tagColor: t[1] };
-});
-
 // Riot-wide calendar: drawings, releases, Pre-Rift / Skirmish windows, premier events. Single source:
 // src/data/riftbound-calendar.json (also loaded into D1 "riftbound" by .github/workflows/riftbound-d1.yml).
 import rawRiot from '../data/riftbound-calendar.json';
@@ -75,6 +66,28 @@ const newsFilters = [['all', 'All'], ['rules', 'Rules'], ['judge', 'Judge'], ['o
   .filter((f) => f.n > 0);
 const docs = rulesRef.documents.map((d) => ({ ...d, when: longDate(d.updated) }));
 const banned = rulesRef.banned;
+
+// Player and collector sections: src/data/riftbound-player.json (events we're going to, decks, results) and
+// src/data/riftbound-collection.json (set completion and top cards from the Collectr export; prices, no totals).
+// Each block renders only when it has data.
+import player from '../data/riftbound-player.json';
+import collection from '../data/riftbound-collection.json';
+const span = (a: string, b?: string | null) => {
+  if (!b || b === a) return longDate(a);
+  const [ya, ma] = a.split('-'), [yb, mb, db] = b.split('-');
+  return ya === yb ? (ma === mb ? `${md(a)}–${+db}, ${ya}` : `${md(a)} – ${md(b)}, ${ya}`) : `${longDate(a)} – ${longDate(b)}`;
+};
+const attending = player.attending.filter((e) => (e.end_date ?? e.start_date) >= today)
+  .sort((a, b) => a.start_date.localeCompare(b.start_date))
+  .map((e) => ({ ...e, when: span(e.start_date, e.end_date), last: e.end_date ?? e.start_date }));
+const decks = player.decks;
+const results = [...player.results].sort((a, b) => b.date.localeCompare(a.date)).map((r) => ({ ...r, when: longDate(r.date) }));
+const money = (n: number) => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const sets = collection.sets.map((x) => ({ ...x, pct: x.total ? Math.round((100 * x.owned) / x.total) : 0 }));
+const topCards = collection.top_cards.map((c) => ({ ...c, price: money(c.price) }));
+const asOf = collection.as_of ? longDate(collection.as_of) : '';
+const H2 = "font-family:'Cinzel',Georgia,serif;font-size:clamp(22px,2.4vw,28px);font-weight:700;margin:0;color:#F6F1FA";
+const EYEBROW = "font-family:'Barlow Semi Condensed',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#A69DB4";
 ---
 <Base title="Riftbound · UndrwrldCub">
 <header style="position:sticky;top:0;z-index:50;background:rgba(14,12,18,.92);backdrop-filter:blur(10px);border-bottom:1px solid #2D2838">
@@ -92,41 +105,13 @@ const banned = rulesRef.banned;
     <div style="flex:1 1 320px;min-width:0">
       <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#6FB2E8">Collection</div>
       <h1 style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(30px,4.4vw,46px);line-height:1.2;margin:4px 0 8px;color:#F6F1FA">Riftbound</h1>
-      <p style="font-size:18px;color:#A69DB4;max-width:72ch;margin:0;text-wrap:pretty">The League of Legends trading card game. We collect it, we play it, and Friday nights you'll find us at Nexus Night at our local shop.</p>
+      <p style="font-size:18px;color:#A69DB4;max-width:72ch;margin:0;text-wrap:pretty">The League of Legends trading card game. We collect it, we play it, and we keep an eye on the rules. This page tracks our decks, our results, the collection, and what Riot is up to.</p>
     </div>
   </div>
 </section>
 
 <main style="max-width:1160px;margin:0 auto;padding:0 20px">
-  <section style="margin-top:44px;position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px 36px;padding:30px 34px;border:1px solid #6B5628;border-radius:16px;background:linear-gradient(135deg,rgba(32,28,41,.92),rgba(20,17,27,.92));box-shadow:0 30px 60px -30px rgba(0,0,0,.9),inset 0 1px 0 rgba(230,189,102,.12)">
-    <div style="position:absolute;left:24px;right:24px;top:-1px;height:2px;background:linear-gradient(90deg,transparent,#D4A64A,#6FB2E8,transparent);border-radius:2px"></div>
-    <div>
-      <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#D4A64A">Weekly · Organized play</div>
-      <h2 style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(30px,4vw,46px);line-height:1.05;color:#F6F1FA;margin:10px 0 8px">Nexus Night</h2>
-      <p style="font-size:18px;color:#A69DB4;margin:0 0 20px;text-wrap:pretty">Every Friday, Big Deck Energy Games in Cathedral City runs Riftbound's weekly store night, and it's where we play. Casual matches, and new players are welcome.</p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;font-family:'Barlow Semi Condensed',sans-serif">
-        <div style="min-width:96px;padding:10px 14px 8px;border:1px solid #3A3347;border-radius:12px;background:#13111A;text-align:center">
-          <b style="display:block;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:26px;line-height:1.2;color:#F6F1FA">FRI</b>
-          <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#A69DB4">Every week</span>
-        </div>
-        <div style="min-width:96px;padding:10px 14px 8px;border:1px solid #3A3347;border-radius:12px;background:#13111A;text-align:center">
-          <b style="display:block;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:26px;line-height:1.2;color:#F6F1FA">6–10</b>
-          <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#A69DB4">PM</span>
-        </div>
-      </div>
-    </div>
-    <div style="border-left:1px solid #3A3347;padding-left:32px;font-family:'Barlow Semi Condensed',sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
-      <div style="color:#A69DB4;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600">Where</div>
-      <div style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:22px;color:#F6F1FA;margin:8px 0 4px">Big Deck Energy Games</div>
-      <div style="font-size:16px;color:#E9E4EE;line-height:1.5">67555 E Palm Canyon Dr, Ste F101<br>Cathedral City, CA 92234<br><span style="color:#A69DB4">Canyon Plaza Shopping Center</span></div>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;justify-content:center">
-        <a href="https://bigdeckenergygames.com/" style="display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 18px;border-radius:10px;font-weight:600;font-size:16px;background:#D4A64A;color:#1A1408"class="btn-gold">Store site</a>
-        <a href="https://maps.apple.com/place?place-id=IC145941D3ABD758A" style="display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 18px;border-radius:10px;font-weight:600;font-size:16px;border:1px solid #6B5628;color:#E9E4EE;background:rgba(24,21,31,.6)"class="btn-outline">Directions</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="news" style="margin-top:52px">
+  <section id="news" style="margin-top:44px">
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap">
       <h2 style="font-family:'Cinzel',Georgia,serif;font-size:clamp(22px,2.4vw,28px);font-weight:700;margin:0;color:#F6F1FA">Riftbound news</h2>
       <a href="https://playriftbound.com/en-us/news/" style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:16px;white-space:nowrap">All of Riot's news →</a>
@@ -186,11 +171,118 @@ const banned = rulesRef.banned;
     })();
   </script>
 
+  <section id="playing" style="margin-top:52px">
+    <h2 style={H2}>Where we play</h2>
+    <div style="width:44px;height:2px;margin:8px 0 18px;background:linear-gradient(90deg,#5CCB86,transparent)"></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px 32px">
+      {attending.length > 0 && (
+        <div id="attending">
+          <div style={EYEBROW}>Events we're going to</div>
+          <ul style="list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px">
+            {attending.map((e) => (
+              <li data-last={e.last} style="padding:14px 16px;border:1px solid #3A3347;border-radius:12px;background:#13111A">
+                <a href={e.url} target="_blank" rel="noopener" style="font-weight:600;font-size:17px">{e.title}</a>
+                <div style="margin-top:2px;font-family:'Barlow Semi Condensed',sans-serif;font-size:15px;color:#A69DB4">{e.when} · {e.location}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {decks.length > 0 && (
+        <div id="decks">
+          <div style={EYEBROW}>Decks we're playing</div>
+          <ul style="list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px">
+            {decks.map((d) => (
+              <li style="padding:14px 16px;border:1px solid #3A3347;border-radius:12px;background:#13111A">
+                <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap">
+                  <strong style="color:#F6F1FA;font-size:17px">{d.legend}</strong>
+                  {d.updated && <span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#756D84">{longDate(d.updated)}</span>}
+                </div>
+                {d.name && <div style="font-size:14.5px;color:#A69DB4">{d.name}</div>}
+                {d.note && <p style="margin:6px 0 0;font-size:14.5px;color:#E9E4EE">{d.note}</p>}
+                <a href={d.url} target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;font-size:14px">Decklist ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+    {results.length > 0 && (
+      <div id="results" style="margin-top:22px">
+        <div style={EYEBROW}>Results</div>
+        <div style="margin-top:10px;overflow-x:auto;border:1px solid #2D2838;border-radius:12px;background:#18151F">
+          <table style="width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px">
+            <thead><tr style="text-align:left;font-family:'Barlow Semi Condensed',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#756D84">
+              <th style="padding:10px 14px">Date</th><th style="padding:10px 14px">Event</th><th style="padding:10px 14px">Legend</th><th style="padding:10px 14px">Record</th><th style="padding:10px 14px">Finish</th>
+            </tr></thead>
+            <tbody>
+              {results.map((r) => (
+                <tr style="border-top:1px solid #2D2838;color:#E9E4EE">
+                  <td style="padding:10px 14px;white-space:nowrap;color:#A69DB4">{r.when}</td>
+                  <td style="padding:10px 14px">{r.event}{r.format && <span style="color:#A69DB4"> · {r.format}</span>}</td>
+                  <td style="padding:10px 14px">{r.legend}</td>
+                  <td style="padding:10px 14px;font-family:'IBM Plex Mono',monospace">{r.record}</td>
+                  <td style="padding:10px 14px">{r.placement ?? ''}{r.players ? <span style="color:#A69DB4"> of {r.players}</span> : ''}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:6px;font-size:13px;color:#756D84">From our PlayRiftbound.com event history.</div>
+      </div>
+    )}
+  </section>
+  <script is:inline>
+    (() => {
+      const t = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' });
+      document.querySelectorAll('#attending li[data-last]').forEach((li) => { if (li.dataset.last < t) li.remove(); });
+    })();
+  </script>
+
+  {(sets.length > 0 || topCards.length > 0) && (
+    <section id="collection" style="margin-top:52px">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <h2 style={H2}>The collection</h2>
+        {asOf && <span style="font-family:'Barlow Semi Condensed',sans-serif;font-size:15px;color:#A69DB4">Collectr snapshot {asOf} · market prices</span>}
+      </div>
+      <div style="width:44px;height:2px;margin:8px 0 18px;background:linear-gradient(90deg,#6FB2E8,transparent)"></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px 32px">
+        {sets.length > 0 && (
+          <div>
+            <div style={EYEBROW}>Set completion</div>
+            <ul style="list-style:none;margin:10px 0 0;padding:0;display:grid;gap:12px">
+              {sets.map((x) => (
+                <li>
+                  <div style="display:flex;justify-content:space-between;gap:10px;font-size:15px"><span style="color:#F6F1FA">{x.set}</span><span style="font-family:'IBM Plex Mono',monospace;color:#A69DB4">{x.owned}/{x.total} · {x.pct}%</span></div>
+                  <div style="height:8px;margin-top:5px;border-radius:999px;background:#2D2838;overflow:hidden" role="img" aria-label={`${x.pct}% of ${x.set}`}><div style={`height:100%;width:${x.pct}%;background:linear-gradient(90deg,#6FB2E8,#9B6BE0)`}></div></div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {topCards.length > 0 && (
+          <div>
+            <div style={EYEBROW}>Top cards by market value</div>
+            <ol style="list-style:none;margin:10px 0 0;padding:0;border:1px solid #3A3347;border-radius:12px;background:#13111A">
+              {topCards.map((c, i) => (
+                <li style={`display:flex;gap:12px;align-items:baseline;padding:10px 14px;${i ? 'border-top:1px solid #2D2838;' : ''}`}>
+                  <span style="font-family:'IBM Plex Mono',monospace;color:#D4A64A;font-size:13px;min-width:20px">{String(i + 1).padStart(2, '0')}</span>
+                  <div style="flex:1;min-width:0"><div style="color:#F6F1FA;font-weight:600">{c.name}</div><div style="font-size:13.5px;color:#A69DB4">{c.set} · {c.rarity}{c.variance && c.variance !== 'Normal' ? ` · ${c.variance}` : ''}</div></div>
+                  <span style="font-family:'IBM Plex Mono',monospace;color:#E9E4EE">{c.price}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
   <section id="judge" style="margin-top:52px;position:relative;padding:30px 34px;border:1px solid #6B5628;border-radius:16px;background:linear-gradient(135deg,rgba(32,28,41,.92),rgba(20,17,27,.92));box-shadow:0 30px 60px -30px rgba(0,0,0,.9),inset 0 1px 0 rgba(230,189,102,.12)">
     <div style="position:absolute;left:24px;right:24px;top:-1px;height:2px;background:linear-gradient(90deg,transparent,#D4A64A,#6FB2E8,transparent);border-radius:2px"></div>
     <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#D4A64A">Rules · Judging</div>
     <h2 style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(26px,3.4vw,38px);line-height:1.1;color:#F6F1FA;margin:10px 0 8px">Judge's corner</h2>
-    <p style="font-size:17px;color:#A69DB4;max-width:76ch;margin:0 0 22px;text-wrap:pretty">What the current Tournament Rules expect at the table, and the documents a judge works from. If a game state looks wrong or a card does something you didn't expect, call a judge: asking is never a penalty, and the earlier an error is caught, the simpler the fix.</p>
+    <p style="font-size:17px;color:#A69DB4;max-width:76ch;margin:0 0 22px;text-wrap:pretty">We're a certified Riftbound judge, not judging events right now. Here's what the current Tournament Rules expect at the table, and the documents a judge works from. If a game state looks wrong or a card does something you didn't expect, call a judge: asking is never a penalty, and the earlier an error is caught, the simpler the fix.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px 32px">
       <div>
         <h3 style="margin:0 0 10px;font-size:19px;color:#F6F1FA">At the table</h3>
@@ -273,7 +365,7 @@ const banned = rulesRef.banned;
           <h3 style="margin:0;font-size:21px;color:#F6F1FA">Nexus Night</h3>
           <span style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;padding:1px 9px;border-radius:999px;border:1px solid #5CCB86;color:#5CCB86;white-space:nowrap">Casual · Weekly</span>
         </div>
-        <p style="margin:0;color:#A69DB4;font-size:15px">Riot's weekly store program, the Riftbound equivalent of Friday night locals. Relaxed pairings, a Nexus Night promo pack for playing (while supplies last), and a format the store picks each week. This is the one we play every Friday at Big Deck Energy.</p>
+        <p style="margin:0;color:#A69DB4;font-size:15px">Riot's weekly store program, the Riftbound equivalent of Friday night locals. Relaxed pairings, a Nexus Night promo pack for playing (while supplies last), and a format the store picks each week.</p>
         <dl style="margin:auto 0 0;padding-top:12px;border-top:1px solid #2D2838;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px">
           <dt style="color:#756D84;font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:12px;padding-top:2px">Format</dt><dd style="margin:0;color:#E9E4EE">Constructed, Sealed, or Modified Champion Deck</dd>
           <dt style="color:#756D84;font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:12px;padding-top:2px">Bring</dt><dd style="margin:0;color:#E9E4EE">A deck; ask the store about loaners</dd>
@@ -330,37 +422,6 @@ const banned = rulesRef.banned;
       </div>
     </div>
     <div style="margin-top:14px;font-size:14px;color:#756D84">Above the store: Regional Qualifiers become Riftbound Regionals (3–4 per set), Regional Championships become Continentals (four per year, three days each), and a World Championship caps the season. Unused Skirmish byes stay valid at Regionals through 2027. Source: <a href="https://playriftbound.com/en-us/news/organizedplay/august-2026-state-of-play">August 2026 State of Play</a>.</div>
-  </section>
-
-  <section id="schedule" style="margin-top:52px">
-    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <h2 style="font-family:'Cinzel',Georgia,serif;font-size:clamp(22px,2.4vw,28px);font-weight:700;margin:0;color:#F6F1FA">Upcoming at Big Deck Energy</h2>
-      <a href="https://locator.riftbound.uvsgames.com/stores/0386840a-27ee-46a0-b525-734c7efbde17" style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:16px;white-space:nowrap">Official listing on Riot's locator →</a>
-    </div>
-    <div style="width:44px;height:2px;margin:8px 0 18px;background:linear-gradient(90deg,#D4A64A,transparent)"></div>
-    <div style="border:1px solid #2D2838;border-radius:12px;background:#18151F;padding:6px 16px">
-      <ul style="list-style:none;margin:0;padding:0">
-        {events.map((e) => (
-          <li style="display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #2D2838">
-            <div style="flex:0 0 60px;display:flex;flex-direction:column;align-items:center;border:1px solid #6B5628;border-radius:10px;overflow:hidden;background:#13111A;line-height:1.1">
-              <span style="width:100%;text-align:center;background:rgba(212,166,74,.22);color:#E6BD66;font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:3px 0">{e.mon}</span>
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:20px;color:#F6F1FA;padding:5px 0 6px">{e.day}</span>
-            </div>
-            <div style="min-width:0;flex:1">
-              <div style="display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center">
-                <strong style="color:#F6F1FA;font-size:17px">{e.title}</strong>
-                <span style={`font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;padding:1px 8px;border-radius:4px;background:${e.tagBg};color:${e.tagColor}`}>{e.kind}</span>
-              </div>
-              <div style="display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:4px;font-family:'Barlow Semi Condensed',sans-serif;font-size:14.5px;color:#A69DB4">
-                <span>{e.time}</span><span>{e.format}</span>
-              </div>
-              {e.note && <div style="margin-top:4px;font-size:14px;color:#A69DB4">{e.note}</div>}
-            </div>
-          </li>
-        ))}
-      </ul>
-      <div style="padding:12px 0 10px;font-size:14px;color:#756D84">Radiance Summoner Skirmish dates are posted as Riot confirms them. Registration through the store or PlayRiftbound.com.</div>
-    </div>
   </section>
 
   <section id="riot-calendar" style="margin-top:52px">
@@ -438,7 +499,7 @@ const banned = rulesRef.banned;
   </section>
 
   <section style="margin-top:52px;background:#18151F;border:1px solid #2D2838;border-left:3px solid #6FB2E8;border-radius:10px;padding:14px 18px">
-    <strong style="color:#F6F1FA">Coming to this page:</strong> <span style="color:#A69DB4">Nexus Night results, a live value snapshot, and set completion by set.</span>
+    <strong style="color:#F6F1FA">Coming to this page:</strong> <span style="color:#A69DB4">more event results as they happen, and the collection refreshed from each Collectr snapshot.</span>
   </section>
 </main>
 

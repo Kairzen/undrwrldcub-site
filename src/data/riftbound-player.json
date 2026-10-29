@@ -1,0 +1,22 @@
+{
+  "attending": [
+    {
+      "id": "2026-convergence-fest",
+      "title": "Convergence Fest",
+      "start_date": "2026-12-11",
+      "end_date": "2026-12-13",
+      "location": "Las Vegas, NV",
+      "url": "https://convergencefest.riotgames.com/en-us/"
+    },
+    {
+      "id": "2027-continental-dallas",
+      "title": "Riftbound Continental Dallas",
+      "start_date": "2027-03-26",
+      "end_date": "2027-03-28",
+      "location": "Dallas, TX",
+      "url": "https://playriftbound.com/en-us/news/organizedplay/riftbound-premier-play-early-2027-events"
+    }
+  ],
+  "decks": [],
+  "results": []
+}
