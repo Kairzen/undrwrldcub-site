@@ -34,9 +34,10 @@ npm run build      # -> dist/
   id, category (announcement, organized_play, rules, judge, product, event_report), title, published, optional
   effective_date, source, summary, optional judge_note, url. `url` must be the article or video itself (never a
   home page or channel; validation fails otherwise). Items with a judge_note also show under the Judge filter.
-  The same workflow loads it into D1 `riftbound` table `rb_news` (replaced in full). Judge notes speak for Wess as
-  the store's Riftbound judge, in the site's we/us voice. The watch adds items; drop ones older than ~90 days.
-- `src/data/riftbound-rules.json` feeds the judge corner ("The judge's table"): current rules documents with dates,
+  The same workflow loads it into D1 `riftbound` table `rb_news` (replaced in full). The Riftbound page speaks as a
+  collector and player (since 2026-10-29 Wess no longer judges or runs play at Big Deck Energy): judge notes are
+  general rules guidance, never store policy or "we rule". The watch adds items; drop ones older than ~90 days.
+- `src/data/riftbound-rules.json` feeds the "Judge's corner": current rules documents with dates,
   the Constructed and 2v2 ban lists, and the judge-test link. Site-only (validated, not loaded into D1).
 - Free tiers only; never commit secrets.
 - Commit as Wes Sanford <undrwrldcub@gmail.com> (set in this clone's git config).

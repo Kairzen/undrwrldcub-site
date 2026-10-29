@@ -47,7 +47,7 @@ const riot = rawRiot
       last: r.end_date ?? r.start_date, flag: statusNote[r.status ?? ''] };
   });
 
-// News and the judge corner. Sources: src/data/riftbound-news.json (newest first; loaded into D1 rb_news
+// News and the judge's corner. Sources: src/data/riftbound-news.json (newest first; loaded into D1 rb_news
 // with the calendar) and src/data/riftbound-rules.json (current rules documents and ban list).
 import rawNews from '../data/riftbound-news.json';
 import rulesRef from '../data/riftbound-rules.json';
@@ -92,7 +92,7 @@ const banned = rulesRef.banned;
     <div style="flex:1 1 320px;min-width:0">
       <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#6FB2E8">Collection</div>
       <h1 style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(30px,4.4vw,46px);line-height:1.2;margin:4px 0 8px;color:#F6F1FA">Riftbound</h1>
-      <p style="font-size:18px;color:#A69DB4;max-width:72ch;margin:0;text-wrap:pretty">The League of Legends trading card game. We collect it, we play it, and every Friday we run Nexus Night at our local shop.</p>
+      <p style="font-size:18px;color:#A69DB4;max-width:72ch;margin:0;text-wrap:pretty">The League of Legends trading card game. We collect it, we play it, and Friday nights you'll find us at Nexus Night at our local shop.</p>
     </div>
   </div>
 </section>
@@ -103,7 +103,7 @@ const banned = rulesRef.banned;
     <div>
       <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#D4A64A">Weekly · Organized play</div>
       <h2 style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(30px,4vw,46px);line-height:1.05;color:#F6F1FA;margin:10px 0 8px">Nexus Night</h2>
-      <p style="font-size:18px;color:#A69DB4;margin:0 0 20px;text-wrap:pretty">Every Friday we run Riftbound at Big Deck Energy Games in Cathedral City. Casual matches, new players welcome, decks to borrow if you don't have one yet.</p>
+      <p style="font-size:18px;color:#A69DB4;margin:0 0 20px;text-wrap:pretty">Every Friday, Big Deck Energy Games in Cathedral City runs Riftbound's weekly store night, and it's where we play. Casual matches, and new players are welcome.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;font-family:'Barlow Semi Condensed',sans-serif">
         <div style="min-width:96px;padding:10px 14px 8px;border:1px solid #3A3347;border-radius:12px;background:#13111A;text-align:center">
           <b style="display:block;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:26px;line-height:1.2;color:#F6F1FA">FRI</b>
@@ -132,7 +132,7 @@ const banned = rulesRef.banned;
       <a href="https://playriftbound.com/en-us/news/" style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:16px;white-space:nowrap">All of Riot's news →</a>
     </div>
     <div style="width:44px;height:2px;margin:8px 0 6px;background:linear-gradient(90deg,#6FB2E8,transparent)"></div>
-    <p style="margin:0 0 16px;font-size:15px;color:#A69DB4">Rules updates, organized play changes and product news, newest first. Every item links to the article itself; items that change how we run events carry a judge's note.</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#A69DB4">Rules updates, organized play changes and product news, newest first. Every item links to the article itself; rules items carry a short judge's note on how they apply at the table.</p>
     <div class="rb-news-filters" role="group" aria-label="Filter news" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;font-family:'Barlow Semi Condensed',sans-serif">
       {newsFilters.map((f) => (
         <button type="button" class="rb-nf" data-cat={f.key} aria-pressed={f.key === 'all' ? 'true' : 'false'}>{f.label} <span style="color:#756D84">{f.n}</span></button>
@@ -188,20 +188,20 @@ const banned = rulesRef.banned;
 
   <section id="judge" style="margin-top:52px;position:relative;padding:30px 34px;border:1px solid #6B5628;border-radius:16px;background:linear-gradient(135deg,rgba(32,28,41,.92),rgba(20,17,27,.92));box-shadow:0 30px 60px -30px rgba(0,0,0,.9),inset 0 1px 0 rgba(230,189,102,.12)">
     <div style="position:absolute;left:24px;right:24px;top:-1px;height:2px;background:linear-gradient(90deg,transparent,#D4A64A,#6FB2E8,transparent);border-radius:2px"></div>
-    <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#D4A64A">Big Deck Energy · Riftbound judge</div>
-    <h2 style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(26px,3.4vw,38px);line-height:1.1;color:#F6F1FA;margin:10px 0 8px">The judge's table</h2>
-    <p style="font-size:17px;color:#A69DB4;max-width:76ch;margin:0 0 22px;text-wrap:pretty">We judge the Riftbound events at Big Deck Energy Games. If a game state looks wrong or a card does something you didn't expect, raise a hand and call "judge." Asking is never a penalty, and the earlier we see an error, the simpler the fix.</p>
+    <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#D4A64A">Rules · Judging</div>
+    <h2 style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(26px,3.4vw,38px);line-height:1.1;color:#F6F1FA;margin:10px 0 8px">Judge's corner</h2>
+    <p style="font-size:17px;color:#A69DB4;max-width:76ch;margin:0 0 22px;text-wrap:pretty">What the current Tournament Rules expect at the table, and the documents a judge works from. If a game state looks wrong or a card does something you didn't expect, call a judge: asking is never a penalty, and the earlier an error is caught, the simpler the fix.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px 32px">
       <div>
-        <h3 style="margin:0 0 10px;font-size:19px;color:#F6F1FA">How we run the table</h3>
+        <h3 style="margin:0 0 10px;font-size:19px;color:#F6F1FA">At the table</h3>
         <ul style="list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px;color:#E9E4EE">
-          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Nexus Night and Pre‑Rift are casual.</strong> We fix the game and keep it friendly. Letting an opponent take back a misplay isn't required, but we encourage it.</span></li>
+          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Nexus Night and Pre‑Rift are casual OPL.</strong> Errors get fixed and the game stays friendly. Letting an opponent take back a misplay isn't required, but it's encouraged.</span></li>
           <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Summoner Skirmish is competitive.</strong> Registered decks and Tournament Rules penalties. Once your opponent has had to point something out, your decision stands.</span></li>
           <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Deck checks happen at the start of a round</strong> and cover the whole deck: main deck, runes, Battlefields, Legend and sideboard.</span></li>
           <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Notes are fine until opening hands.</strong> Look at your notes while sideboarding; put them away once you draw.</span></li>
           <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Bluffing about hidden information is legal.</strong> Lying about public information, or how a card works, is not.</span></li>
           <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Tokens need a real card object</strong> with a clear ready or exhausted state your opponent can read.</span></li>
-          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Errata and the FAQ beat the printed card.</strong> We rule from the current text below.</span></li>
+          <li style="display:flex;gap:10px"><span style="color:#E4B45A">◆</span><span><strong style="color:#F6F1FA">Errata and the FAQ beat the printed card.</strong> Rulings follow the current documents listed here.</span></li>
         </ul>
       </div>
       <div style="display:grid;gap:18px;align-content:start">
@@ -273,10 +273,10 @@ const banned = rulesRef.banned;
           <h3 style="margin:0;font-size:21px;color:#F6F1FA">Nexus Night</h3>
           <span style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;padding:1px 9px;border-radius:999px;border:1px solid #5CCB86;color:#5CCB86;white-space:nowrap">Casual · Weekly</span>
         </div>
-        <p style="margin:0;color:#A69DB4;font-size:15px">Riot's weekly store program, the Riftbound equivalent of Friday night locals. Relaxed pairings, a Nexus Night promo pack for playing (while supplies last), and a format the store picks each week. This is the one we run every Friday.</p>
+        <p style="margin:0;color:#A69DB4;font-size:15px">Riot's weekly store program, the Riftbound equivalent of Friday night locals. Relaxed pairings, a Nexus Night promo pack for playing (while supplies last), and a format the store picks each week. This is the one we play every Friday at Big Deck Energy.</p>
         <dl style="margin:auto 0 0;padding-top:12px;border-top:1px solid #2D2838;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px">
           <dt style="color:#756D84;font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:12px;padding-top:2px">Format</dt><dd style="margin:0;color:#E9E4EE">Constructed, Sealed, or Modified Champion Deck</dd>
-          <dt style="color:#756D84;font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:12px;padding-top:2px">Bring</dt><dd style="margin:0;color:#E9E4EE">A deck, or borrow one of ours</dd>
+          <dt style="color:#756D84;font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:12px;padding-top:2px">Bring</dt><dd style="margin:0;color:#E9E4EE">A deck; ask the store about loaners</dd>
         </dl>
       </div>
       <div style="position:relative;display:flex;flex-direction:column;gap:10px;background:#18151F;border:1px solid #2D2838;border-radius:12px;padding:22px 20px 18px;overflow:hidden">
@@ -330,34 +330,6 @@ const banned = rulesRef.banned;
       </div>
     </div>
     <div style="margin-top:14px;font-size:14px;color:#756D84">Above the store: Regional Qualifiers become Riftbound Regionals (3–4 per set), Regional Championships become Continentals (four per year, three days each), and a World Championship caps the season. Unused Skirmish byes stay valid at Regionals through 2027. Source: <a href="https://playriftbound.com/en-us/news/organizedplay/august-2026-state-of-play">August 2026 State of Play</a>.</div>
-  </section>
-
-  <section style="margin-top:52px;position:relative;padding:30px 34px;border:1px solid #6B5628;border-radius:16px;background:linear-gradient(135deg,rgba(32,28,41,.92),rgba(20,17,27,.92));box-shadow:0 30px 60px -30px rgba(0,0,0,.9),inset 0 1px 0 rgba(230,189,102,.12)">
-    <div style="position:absolute;left:24px;right:24px;top:-1px;height:2px;background:linear-gradient(90deg,transparent,#D4A64A,#9B6BE0,transparent);border-radius:2px"></div>
-    <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#D4A64A">Our plan at Big Deck Energy</div>
-    <h2 style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(26px,3.4vw,38px);line-height:1.1;color:#F6F1FA;margin:10px 0 18px">Same Fridays. More to play for.</h2>
-    <ol style="list-style:none;margin:0;padding:0;display:grid;gap:10px">
-      <li style="display:flex;gap:16px;align-items:flex-start;background:#13111A;border:1px solid #3A3347;border-radius:12px;padding:14px 18px">
-        <span style="font-family:'IBM Plex Mono',monospace;color:#D4A64A;font-size:15px;padding-top:3px">01</span>
-        <div><strong style="color:#F6F1FA">Nexus Night stays weekly.</strong> <span style="color:#A69DB4">Fridays 6–10 PM, unchanged. It is the heart of the local scene and Riot isn't touching it, so neither are we.</span></div>
-      </li>
-      <li style="display:flex;gap:16px;align-items:flex-start;background:#13111A;border:1px solid #3A3347;border-radius:12px;padding:14px 18px">
-        <span style="font-family:'IBM Plex Mono',monospace;color:#D4A64A;font-size:15px;padding-top:3px">02</span>
-        <div><strong style="color:#F6F1FA">Run the last Radiance Skirmishes.</strong> <span style="color:#A69DB4">Both windows, with the boosted prize kits. A send‑off for the format before it goes.</span></div>
-      </li>
-      <li style="display:flex;gap:16px;align-items:flex-start;background:#13111A;border:1px solid #3A3347;border-radius:12px;padding:14px 18px">
-        <span style="font-family:'IBM Plex Mono',monospace;color:#D4A64A;font-size:15px;padding-top:3px">03</span>
-        <div><strong style="color:#F6F1FA">Host the Nexus Cup every set, from Legacy on.</strong> <span style="color:#A69DB4">A store champion each set, on a Friday, so regulars don't need a second night out.</span></div>
-      </li>
-      <li style="display:flex;gap:16px;align-items:flex-start;background:#13111A;border:1px solid #3A3347;border-radius:12px;padding:14px 18px">
-        <span style="font-family:'IBM Plex Mono',monospace;color:#D4A64A;font-size:15px;padding-top:3px">04</span>
-        <div><strong style="color:#F6F1FA">Apply for the Challenge Series network.</strong> <span style="color:#A69DB4">The Coachella Valley deserves a competitive on‑ramp closer than Los Angeles. Attendance on Fridays is the case we make to Riot.</span></div>
-      </li>
-      <li style="display:flex;gap:16px;align-items:flex-start;background:#13111A;border:1px solid #3A3347;border-radius:12px;padding:14px 18px">
-        <span style="font-family:'IBM Plex Mono',monospace;color:#D4A64A;font-size:15px;padding-top:3px">05</span>
-        <div><strong style="color:#F6F1FA">Move sign‑ups to PlayRiftbound.com.</strong> <span style="color:#A69DB4">Every Radiance event and onward registers there. We'll help anyone set up an account at the table.</span></div>
-      </li>
-    </ol>
   </section>
 
   <section id="schedule" style="margin-top:52px">
@@ -438,7 +410,7 @@ const banned = rulesRef.banned;
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
       <div style="background:#18151F;border:1px solid #2D2838;border-radius:12px;padding:20px">
         <h3 style="margin:0 0 6px;font-size:20px;color:#F6F1FA">At the table</h3>
-        <p style="margin:0;color:#A69DB4;font-size:15px">Nexus Night is casual by design: learn‑to‑play games, deck tuning, and the occasional bracket when enough Legends show up. Bring a deck or borrow one.</p>
+        <p style="margin:0;color:#A69DB4;font-size:15px">Nexus Night is casual by design: learn‑to‑play games, deck tuning, and the occasional bracket when enough Legends show up.</p>
       </div>
       <div style="background:#18151F;border:1px solid #2D2838;border-radius:12px;padding:20px">
         <h3 style="margin:0 0 6px;font-size:20px;color:#F6F1FA">Singles, sealed, graded</h3>

@@ -24,7 +24,7 @@
     "published": "2026-10-26",
     "source": "Riot Games",
     "summary": "Official rulings for Radiance interactions, including Neeko, Blending In through Kharox, Seraphic Wyvern with Mobilize, Mordekaiser, Iron Revenant paying costs, and Runeblade Anvil timing.",
-    "judge_note": "Where this FAQ and the Core Rules disagree, the FAQ wins until the next Core Rules release. We rule from it at the table.",
+    "judge_note": "Where this FAQ and the Core Rules disagree, the FAQ wins until the next Core Rules release.",
     "url": "https://playriftbound.com/en-us/news/organizedplay/radiance-rules-faq-and-clarifications"
   },
   {
@@ -61,7 +61,7 @@
     "published": "2026-10-15",
     "source": "Riot Games",
     "summary": "To even out going first versus second, select events outside premier play will test choosing turn order before Battlefields, and giving the second player one extra perk on top of the third rune: start at 1 point, draw an extra card, or predict before the first draw. This is a test, not a rules change.",
-    "judge_note": "Standard rules apply at Big Deck Energy unless we announce a test variant before the event starts.",
+    "judge_note": "Standard rules apply unless event staff announce a test variant before the event starts.",
     "url": "https://playriftbound.com/en-us/news/organizedplay/testing-start-of-game-rules"
   },
   {
@@ -82,7 +82,7 @@
     "effective_date": "2026-10-16",
     "source": "Riot Games",
     "summary": "A judge-feedback cleanup: clearer limits on changing gameplay decisions (509), reworked Deck Presentation Error remedies, floor judges must fix errors they see, bluffing about private information is legal, randomized deck checks happen at round start, and Radiance joins Standard.",
-    "judge_note": "Nexus Night is casual OPL: we don't require takebacks, but we encourage them when a newer player misreads the board. At competitive OPL a decision stands once your opponent has had to point something out.",
+    "judge_note": "At casual OPL (Nexus Night, Pre-Rift) takebacks aren't required but are encouraged, especially for newer players. At competitive OPL a decision stands once the opponent has had to point something out.",
     "url": "https://playriftbound.com/en-us/news/announcements/october-2026-tournament-rules-changelog"
   },
   {
@@ -102,7 +102,7 @@
     "published": "2026-10-09",
     "source": "Riot Games",
     "summary": "Text updates for Elnuk Herd (can now target itself as a friendly unit), Last Caress, Forbidden Technique and Neeko, Blending In (choose up to 3 Legends).",
-    "judge_note": "Errata beats the printed card. If your copy reads differently, the errata text is the one we use.",
+    "judge_note": "Errata beats the printed card. If a copy reads differently, the errata text is the one that applies.",
     "url": "https://playriftbound.com/en-us/news/announcements/radiance-errata-updates"
   }
 ]
