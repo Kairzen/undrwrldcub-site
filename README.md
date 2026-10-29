@@ -5,7 +5,7 @@ Personal landing site for UndrwrldCub — live at **https://undrwrldcub.com**.
 Built with [Astro](https://astro.build) on the [undrwrldcub platform](https://github.com/Kairzen/undrwrldcub-platform); hosted on Cloudflare Workers (static assets, Worker `undrwrldcub-home`, custom domains undrwrldcub.com and www.undrwrldcub.com). No deviations from the platform baseline.
 
 - `src/pages/` — home, pathfinder, riftbound, lorcana, workshop, parks.
-- `src/data/riftbound-events.json` — the Riftbound schedule (one object per event); rendered at build time on `/riftbound/`.
+- `src/data/riftbound-*.json` — Riftbound page data (calendar, news, rules, player, collection); see CLAUDE.md.
 - `src/layouts/Base.astro` — uses `BrandHead` from `@undrwrldcub/brand` (fonts, tokens, icons, meta).
 - `public/brand/` — generated at build time from `@undrwrldcub/brand`; not committed.
 - `public/riftbound/` — Riot/UVS Radiance retailer images.

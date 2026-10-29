@@ -8,3 +8,10 @@ a.btn-gold:hover{background:#E6BD66;color:#1A1408}
 a.btn-outline:hover{border-color:#D4A64A;color:#F6F1FA}
 a.pill:hover{border-color:#9B6BE0;color:#F6F1FA}
 a.realm:hover{transform:translateY(-2px);border-color:var(--accent);color:#E9E4EE}
+
+/* Riftbound news filter chips */
+.rb-nf{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:999px;border:1px solid #3A3347;background:#13111A;color:#E9E4EE;font:600 15px 'Barlow Semi Condensed',sans-serif;cursor:pointer}
+.rb-nf:hover{border-color:#6FB2E8;color:#F6F1FA}
+.rb-nf[aria-pressed="true"]{border-color:#D4A64A;background:rgba(212,166,74,.14);color:#F6F1FA}
+.rb-nf:focus-visible{outline:2px solid #6FB2E8;outline-offset:2px}
+#rb-news-list li[hidden]{display:none}
