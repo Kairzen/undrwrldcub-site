@@ -99,8 +99,8 @@
     "end_date": "2027-01-28",
     "status": "confirmed",
     "summary": "Set 6 Pre-Rift week. Legacy is a League Classic crossover: Ashe, Garen, Heimerdinger, Illaoi, Karma, Lux, Tryndamere, Vladimir and more.",
-    "details": "Reported kit (distributor listing): 18 player kits plus 1 Legacy booster display for prizes; each player kit has a Pre-Rift pack (6 region variants), 2 Legends, 5 Legacy boosters and 2 prerelease-stamped promos. Pre-Rift promo cards not yet announced. Legacy also launches the new store programs: Nexus Cup (per-set store championship with Winner/Top 8 promos, winner playmat and a participation promo) and Challenge Series (select stores; Ladder Points to Top 32, winner earns a Regional token). Windows and promos not yet announced.",
-    "source_url": "https://playriftbound.com/en-us/news/announcements/products-and-sets-into-2027/"
+    "details": "Sealed. Each player kit: 1 Pre-Rift pack (6 region variants: Noxus, Ionia, Freljord, Bilgewater, Piltover & Zaun, Demacia), 2 Legends, 5 Legacy boosters and 2 prerelease-stamped promos; stores get 18 kits plus a booster display for prizes. Pre-Rift promo cards not yet announced.",
+    "source_url": "https://uvsgames.com/wp-content/uploads/2026/10/Legacy-Dates-and-Details.pdf"
   },
   {
     "id": "2027-legacy-release",
@@ -110,6 +110,28 @@
     "status": "confirmed",
     "summary": "Set 6 street date.",
     "source_url": "https://playriftbound.com/en-us/news/announcements/products-and-sets-into-2027/"
+  },
+  {
+    "id": "2027-legacy-nexus-cup",
+    "kind": "skirmish",
+    "title": "Nexus Cup (Legacy)",
+    "start_date": "2027-02-05",
+    "end_date": "2027-04-09",
+    "status": "confirmed",
+    "summary": "First window for the new per-set store championship that replaces Summoner Skirmish. One Nexus Cup per store.",
+    "details": "Recommended format Bo3 Draft (stores may pick Constructed, Bo1 Draft or 2v2). Prizes: participation promo, Top Cut promos (3 for 1st and 2nd, 2 for 3rd and 4th, 1 for 5th to 8th), a Winner promo and a Champion playmat. Promo cards not yet announced.",
+    "source_url": "https://uvsgames.com/wp-content/uploads/2026/10/Legacy-Dates-and-Details.pdf"
+  },
+  {
+    "id": "2027-legacy-challenge-series",
+    "kind": "skirmish",
+    "title": "Challenge Series (Legacy)",
+    "start_date": "2027-02-05",
+    "end_date": "2027-04-09",
+    "status": "confirmed",
+    "summary": "First Challenge Series window at select stores: Bo3 Standard Constructed, Swiss with Top 8, 32-player minimum.",
+    "details": "Top Cut and Winner promos; the winner earns a Regional Token (free Competitor Badge to a future Regional).",
+    "source_url": "https://uvsgames.com/wp-content/uploads/2026/10/Legacy-Dates-and-Details.pdf"
   },
   {
     "id": "2027-proving-grounds-2e",
