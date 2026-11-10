@@ -81,6 +81,17 @@
     "source_url": "https://convergencefest.riotgames.com/en-us/"
   },
   {
+    "id": "2026-legacy-preview",
+    "kind": "preview",
+    "title": "Legacy preview season",
+    "start_date": "2026-12-11",
+    "end_date": "2027-01-28",
+    "status": "reported",
+    "summary": "Legacy previews start at Convergence Fest and continue into January, ahead of the Jan 22 Pre-Rift. Riot hasn't posted a full preview schedule yet.",
+    "url": "https://playriftbound.com/en-us/news/announcements/products-and-sets-into-2027/",
+    "source_url": "https://riftbound.gg/legacy/"
+  },
+  {
     "id": "2026-radiance-skirmish-2",
     "kind": "skirmish",
     "title": "Summoner Skirmish II (Radiance) — final Skirmish",
@@ -101,6 +112,19 @@
     "summary": "Set 6 Pre-Rift week. Legacy is a League Classic crossover: Ashe, Garen, Heimerdinger, Illaoi, Karma, Lux, Tryndamere, Vladimir and more.",
     "details": "Sealed. Each player kit: 1 Pre-Rift pack (6 region variants: Noxus, Ionia, Freljord, Bilgewater, Piltover & Zaun, Demacia), 2 Legends, 5 Legacy boosters and 2 prerelease-stamped promos; stores get 18 kits plus a booster display for prizes. Pre-Rift promo cards not yet announced.",
     "source_url": "https://uvsgames.com/wp-content/uploads/2026/10/Legacy-Dates-and-Details.pdf"
+  },
+  {
+    "id": "2027-world-showcase",
+    "kind": "premier",
+    "title": "Riftbound World Showcase",
+    "start_date": "2027-01-22",
+    "end_date": "2027-01-23",
+    "status": "confirmed",
+    "location": "Shanghai, China",
+    "summary": "The first Riftbound World Champion is crowned. 24 invited players compete with Legacy a week before its release; streamed on Twitch and YouTube.",
+    "details": "Three Constructed decks with no overlapping Domains (Deck A rounds 1-3, B 4-6, C 7-9), then a Bo3 Top 4 with a pre-chosen Playoff Deck. $100k prize pool, trophy, a serialized promo numbered 1-24 by final standing, and OVN Foil Plated Legends drafted by standing.",
+    "url": "https://playriftbound.com/en-us/news/organizedplay/riftbound-world-showcase",
+    "source_url": "https://playriftbound.com/en-us/news/organizedplay/riftbound-world-showcase"
   },
   {
     "id": "2027-legacy-release",
