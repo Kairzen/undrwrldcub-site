@@ -57,6 +57,17 @@
     "source_url": "https://playriftbound.com/en-us/news/announcements/riftbounds-2026-drawings"
   },
   {
+    "id": "2026-radiance-ban-list",
+    "kind": "rules",
+    "title": "Radiance ban list takes effect",
+    "start_date": "2026-11-23",
+    "status": "confirmed",
+    "summary": "Eight cards and two battlefields join the Standard and 2v2 Constructed ban list, hitting the Riven, Kennen and Kai'Sa decks that topped the European Regional Championship.",
+    "details": "Cards: Riven, Broken Blade; Zhonya's Hourglass; Stellacorn Herder; Nocturne, Horrifying; Rhasa the Sunderer; Brynhir Thundersong; Dazzling Aurora; Baited Hook. Battlefields: Emperor's Dais; Star Spring.",
+    "url": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026/",
+    "source_url": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026/"
+  },
+  {
     "id": "2026-gift-of-the-rift",
     "kind": "product",
     "title": "Gift of the Rift Bundle",
